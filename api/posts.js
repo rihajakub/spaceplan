@@ -11,7 +11,7 @@ function database() {
 }
 
 async function prepare(sql) {
-  await sql(`CREATE TABLE IF NOT EXISTS content_posts (
+  await sql.query(`CREATE TABLE IF NOT EXISTS content_posts (
     id TEXT PRIMARY KEY,
     payload JSONB NOT NULL,
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
