@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
     await prepare(sql);
 
     if (req.method === 'GET') {
-      const rows = await sql('SELECT payload FROM content_posts ORDER BY payload->>\'date\', payload->>\'time\', payload->>\'title\'');
+      const rows = await sql.query('SELECT payload FROM content_posts ORDER BY payload->>\'date\', payload->>\'time\', payload->>\'title\'');
       return send(res, 200, { posts: rows.map(row => row.payload) });
     }
 
@@ -38,7 +38,7 @@ module.exports = async (req, res) => {
       const { action, post, id } = req.body || {};
       if (action === 'upsert') {
         if (!validPost(post)) return send(res, 400, { error: 'Neplatná data příspěvku.' });
-        await sql(
+        await sql.query(
           'INSERT INTO content_posts (id, payload, updated_at) VALUES ($1, $2::jsonb, NOW()) ON CONFLICT (id) DO UPDATE SET payload = EXCLUDED.payload, updated_at = NOW()',
           [post.id, JSON.stringify(post)]
         );
@@ -46,7 +46,7 @@ module.exports = async (req, res) => {
       }
       if (action === 'delete') {
         if (typeof id !== 'string' || !id) return send(res, 400, { error: 'Chybí ID příspěvku.' });
-        await sql('DELETE FROM content_posts WHERE id = $1', [id]);
+        await sql.query('DELETE FROM content_posts WHERE id = $1', [id]);
         return send(res, 200, { id });
       }
       return send(res, 400, { error: 'Neznámá akce.' });
