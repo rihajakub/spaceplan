@@ -5,6 +5,7 @@
   "description": "Společný content plán pro Facebook, Instagram a LinkedIn.",
   "dependencies": {
     "@neondatabase/serverless": "^1.0.1",
-    "@vercel/blob": "^2.3.0"
+    "@vercel/blob": "^2.3.0",
+    "xlsx": "^0.18.5"
   }
 }
