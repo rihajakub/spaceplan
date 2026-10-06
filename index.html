@@ -715,42 +715,412 @@
       .filter-menu:focus-within {
         outline-color: var(--blue);
       }
-      .app-view.hidden { display: none; }
-      .hub { max-width: 1280px; margin: 0 auto; padding: 42px 28px 64px; }
-      .hub-hero { margin: 0 0 28px; }
-      .hub-hero h2 { margin: 0 0 8px; font-size: clamp(28px, 4vw, 42px); }
-      .hub-hero p { color: var(--muted); margin: 0; max-width: 650px; }
-      .hub-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-      .hub-card, .report-card, .surface { background: #fff; border: 1px solid var(--line); border-radius: 14px; }
-      .hub-card { padding: 24px; cursor: pointer; text-align: left; min-height: 190px; display: flex; flex-direction: column; gap: 12px; }
-      .hub-card:hover { border-color: var(--blue); box-shadow: 0 8px 26px #18223910; }
-      .hub-card .icon { font-size: 28px; }
-      .hub-card h3 { margin: 0; font-size: 21px; }
-      .hub-card p { color: var(--muted); margin: 0; line-height: 1.5; }
-      .hub-card span:last-child { color: var(--blue); font-weight: 700; margin-top: auto; }
-      .section-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 22px; }
-      .section-head h2 { margin: 0 0 5px; }
-      .section-head p { margin: 0; color: var(--muted); }
-      .nav { display: flex; gap: 6px; align-items: center; }
-      .nav button { border: 0; background: transparent; color: var(--muted); padding: 9px 11px; }
-      .nav button.active { color: var(--text); background: #eef2ff; }
-      .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 18px 0; }
-      .report-card { padding: 17px; }
-      .report-card .label { color: var(--muted); font-size: 13px; }
-      .report-card strong { display: block; font-size: 25px; margin: 7px 0 3px; }
-      .report-card small { color: var(--muted); }
-      .surface { padding: 20px; margin: 16px 0; overflow-x: auto; }
-      .data-table { border-collapse: collapse; width: 100%; min-width: 560px; }
-      .data-table th, .data-table td { padding: 12px; border-bottom: 1px solid var(--line); text-align: left; }
-      .data-table th { color: var(--muted); font-weight: 600; font-size: 13px; }
-      .data-table input { min-width: 100px; }
-      .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-      .form-grid label, .compact-label { display: grid; gap: 6px; font-size: 14px; font-weight: 600; }
-      .form-grid input, .form-grid textarea, .compact-label input, .compact-label textarea, .compact-label select { width: 100%; }
-      .form-grid .wide { grid-column: 1 / -1; }
-      .view-note { color: var(--muted); font-size: 14px; margin: 0 0 10px; }
-      .status-good { color: #08784a; } .status-pending { color: #9a5b00; }
-      @media (max-width: 800px) { .hub-grid, .metrics, .form-grid { grid-template-columns: 1fr; } .hub { padding: 28px 16px; } .nav { display: none; } }
+      .app-view.hidden {
+        display: none;
+      }
+      .hub {
+        max-width: 1320px;
+        margin: 0 auto;
+        padding: 42px 28px 72px;
+      }
+      .hub-hero {
+        margin: 0 0 28px;
+      }
+      .hub-hero h2 {
+        margin: 0 0 8px;
+        font-size: clamp(28px, 4vw, 42px);
+      }
+      .hub-hero p {
+        color: var(--muted);
+        margin: 0;
+        max-width: 650px;
+      }
+      .hub-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+      }
+      .hub-card,
+      .surface {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+      }
+      .hub-card {
+        padding: 24px;
+        cursor: pointer;
+        text-align: left;
+        min-height: 190px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .hub-card:hover {
+        border-color: #a9afbd;
+        box-shadow: 0 12px 34px #18223912;
+        transform: translateY(-1px);
+      }
+      .hub-card .icon {
+        font-size: 28px;
+      }
+      .hub-card h3 {
+        margin: 0;
+        font-size: 21px;
+      }
+      .hub-card p {
+        color: var(--muted);
+        margin: 0;
+        line-height: 1.5;
+      }
+      .hub-card span:last-child {
+        color: var(--blue);
+        font-weight: 700;
+        margin-top: auto;
+      }
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 18px;
+        margin-bottom: 22px;
+      }
+      .section-head h2 {
+        margin: 0 0 5px;
+        font-size: 30px;
+      }
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+      }
+      .section-actions {
+        display: flex;
+        align-items: end;
+        gap: 10px;
+      }
+      .section-actions label {
+        min-width: 180px;
+      }
+      .nav {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+      .nav button {
+        border: 0;
+        background: transparent;
+        color: var(--muted);
+        padding: 9px 11px;
+      }
+      .nav button.active {
+        color: var(--text);
+        background: #eef2ff;
+      }
+      .surface {
+        padding: 22px;
+        margin: 18px 0;
+        overflow-x: auto;
+      }
+      .report-cover {
+        background: #151a22;
+        color: white;
+        border-radius: 16px;
+        padding: 28px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        margin-bottom: 26px;
+      }
+      .report-cover .eyebrow {
+        color: #b7bcc7;
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .report-cover h2 {
+        font-size: 34px;
+        margin: 7px 0 0;
+      }
+      .report-cover .report-status {
+        color: #d8dbe2;
+        text-align: right;
+      }
+      .report-section {
+        margin: 30px 0;
+      }
+      .report-section > h3 {
+        font-size: 21px;
+        margin: 0 0 12px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #1d222b;
+      }
+      .report-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+      .report-block {
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .report-block-title {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+        padding: 14px 16px;
+        background: #d9d9da;
+        font-weight: 700;
+      }
+      .report-block-title .tag {
+        background: #fff;
+        border-radius: 999px;
+        font-size: 12px;
+        padding: 4px 9px;
+        color: #616977;
+      }
+      .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .comparison-table th,
+      .comparison-table td {
+        border-top: 1px solid #fff;
+        padding: 11px 15px;
+        text-align: right;
+        background: #f1f1f2;
+      }
+      .comparison-table th {
+        color: #626a78;
+        font-size: 12px;
+        font-weight: 700;
+        background: #e6e6e7;
+      }
+      .comparison-table th:first-child,
+      .comparison-table td:first-child {
+        text-align: left;
+        width: 46%;
+      }
+      .comparison-table .fulfilment {
+        font-weight: 800;
+      }
+      .comparison-table .over {
+        color: #08784a;
+      }
+      .comparison-table .under {
+        color: #a36006;
+      }
+      .edit-panel {
+        margin-top: 30px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: #fff;
+      }
+      .edit-panel summary {
+        cursor: pointer;
+        padding: 16px 18px;
+        font-weight: 700;
+      }
+      .edit-panel form {
+        border-top: 1px solid var(--line);
+        padding: 18px;
+      }
+      .data-table {
+        border-collapse: collapse;
+        width: 100%;
+        min-width: 560px;
+      }
+      .data-table th,
+      .data-table td {
+        padding: 12px;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+      }
+      .data-table th {
+        color: var(--muted);
+        font-weight: 600;
+        font-size: 13px;
+      }
+      .billing-wrap {
+        overflow: auto;
+        border: 1px solid #cfd5df;
+        border-radius: 12px;
+        background: white;
+      }
+      .billing-table {
+        border-collapse: separate;
+        border-spacing: 0;
+        width: max-content;
+        min-width: 100%;
+        font-size: 13px;
+      }
+      .billing-table th,
+      .billing-table td {
+        border-right: 1px solid #d6dbe3;
+        border-bottom: 1px solid #d6dbe3;
+        padding: 10px 9px;
+        text-align: right;
+        min-width: 104px;
+        white-space: nowrap;
+      }
+      .billing-table th:first-child,
+      .billing-table td:first-child {
+        position: sticky;
+        left: 0;
+        z-index: 2;
+        text-align: left;
+        min-width: 235px;
+        background: white;
+      }
+      .billing-table thead th {
+        background: #f2f4f8;
+        color: #4c5565;
+        font-size: 12px;
+        text-transform: capitalize;
+      }
+      .billing-table thead th:first-child {
+        z-index: 3;
+        background: #f2f4f8;
+      }
+      .billing-table .group-row td {
+        background: #1d222b;
+        color: white;
+        font-weight: 800;
+        text-align: left;
+      }
+      .billing-table .plan-row td {
+        background: #dfe9f7;
+      }
+      .billing-table .plan-row td:first-child {
+        background: #dfe9f7;
+      }
+      .billing-table .total-row td {
+        background: #dbe9bc;
+        font-weight: 800;
+      }
+      .billing-table .total-row td:first-child {
+        background: #dbe9bc;
+      }
+      .billing-table .difference-row td {
+        font-weight: 800;
+        color: #08784a;
+      }
+      .billing-table input {
+        width: 92px;
+        min-width: 0;
+        padding: 7px 8px;
+        text-align: right;
+        background: #fffdf2;
+      }
+      .billing-summary {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        margin: 18px 0;
+      }
+      .billing-summary > div {
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 17px;
+      }
+      .billing-summary span {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .billing-summary strong {
+        display: block;
+        font-size: 24px;
+        margin-top: 6px;
+      }
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+      .form-grid label,
+      .compact-label {
+        display: grid;
+        gap: 6px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .form-grid input,
+      .form-grid textarea,
+      .compact-label input,
+      .compact-label textarea,
+      .compact-label select {
+        width: 100%;
+      }
+      .form-grid .wide {
+        grid-column: 1 / -1;
+      }
+      .view-note {
+        color: var(--muted);
+        font-size: 14px;
+        margin: 0 0 10px;
+      }
+      .status-good {
+        color: #08784a;
+      }
+      .status-pending {
+        color: #9a5b00;
+      }
+      @media (max-width: 980px) {
+        .hub-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .report-grid {
+          grid-template-columns: 1fr;
+        }
+        .nav {
+          display: none;
+        }
+      }
+      @media (max-width: 650px) {
+        .hub-grid,
+        .form-grid,
+        .billing-summary {
+          grid-template-columns: 1fr;
+        }
+        .hub {
+          padding: 28px 16px;
+        }
+        .section-head,
+        .report-cover {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .report-cover .report-status {
+          text-align: left;
+        }
+      }
+      @media print {
+        body {
+          background: white;
+        }
+        body > header,
+        #view-home,
+        #view-content,
+        #view-billing,
+        #view-newsletters,
+        .section-head,
+        .edit-panel {
+          display: none !important;
+        }
+        #view-reporting {
+          display: block !important;
+          padding: 0;
+          max-width: none;
+        }
+        .report-cover {
+          break-inside: avoid;
+        }
+        .report-block {
+          break-inside: avoid;
+        }
+      }
     </style>
   </head>
   <body>
@@ -772,12 +1142,49 @@
       <button class="primary" id="new" disabled>＋ Nový příspěvek</button>
     </header>
     <section id="view-home" class="app-view hub">
-      <div class="hub-hero"><h2>Marketingový přehled SPACE PLAN</h2><p>Jedno společné místo pro plánování obsahu, měsíční reporting a kontrolu čerpání mediálního rozpočtu.</p></div>
+      <div class="hub-hero">
+        <h2>Marketingový přehled SPACE PLAN</h2>
+        <p>
+          Jedno společné místo pro plánování obsahu, měsíční reporting a
+          kontrolu čerpání mediálního rozpočtu.
+        </p>
+      </div>
       <div class="hub-grid">
-        <button class="hub-card" data-view="content"><span class="icon">▦</span><h3>Content plán</h3><p>Kalendář příspěvků pro sociální sítě i newslettery. Data jsou společná pro celý tým.</p><span>Otevřít plán →</span></button>
-        <button class="hub-card" data-view="reporting"><span class="icon">↗</span><h3>Reporting</h3><p>Měsíční výsledky, plánované hodnoty do konce roku a tisk reportu do PDF.</p><span>Otevřít reporting →</span></button>
-        <button class="hub-card" data-view="billing"><span class="icon">⌁</span><h3>Vyúčtování</h3><p>Porovnání plánovaných a skutečně vyčerpaných investic podle média.</p><span>Otevřít vyúčtování →</span></button>
-        <button class="hub-card" data-view="newsletters"><span class="icon">✉</span><h3>Newslettery</h3><p>Evidence čtvrtletních rozesílek, odkazy do Mailchimpu a srovnání jejich výkonu.</p><span>Otevřít newslettery →</span></button>
+        <button class="hub-card" data-view="content">
+          <span class="icon">▦</span>
+          <h3>Content plán</h3>
+          <p>
+            Kalendář příspěvků pro sociální sítě i newslettery. Data jsou
+            společná pro celý tým.
+          </p>
+          <span>Otevřít plán →</span>
+        </button>
+        <button class="hub-card" data-view="reporting">
+          <span class="icon">↗</span>
+          <h3>Reporting</h3>
+          <p>
+            Měsíční výsledky, plánované hodnoty do konce roku a tisk reportu do
+            PDF.
+          </p>
+          <span>Otevřít reporting →</span>
+        </button>
+        <button class="hub-card" data-view="billing">
+          <span class="icon">⌁</span>
+          <h3>Vyúčtování</h3>
+          <p>
+            Porovnání plánovaných a skutečně vyčerpaných investic podle média.
+          </p>
+          <span>Otevřít vyúčtování →</span>
+        </button>
+        <button class="hub-card" data-view="newsletters">
+          <span class="icon">✉</span>
+          <h3>Newslettery</h3>
+          <p>
+            Evidence čtvrtletních rozesílek, odkazy do Mailchimpu a srovnání
+            jejich výkonu.
+          </p>
+          <span>Otevřít newslettery →</span>
+        </button>
       </div>
     </section>
     <section id="view-content" class="app-view shell hidden">
@@ -923,7 +1330,8 @@
           <div id="net-error" class="error" role="alert"></div>
         </fieldset>
         <label class="field"
-          ><span id="copy-label">Text příspěvku</span><textarea
+          ><span id="copy-label">Text příspěvku</span
+          ><textarea
             name="text"
             rows="5"
             placeholder="Text, který bude publikován…"
@@ -954,8 +1362,8 @@
             name="newsletterTopics"
             rows="4"
             placeholder="Např. hlavní článek, realizace, akce, případně CTA…"
-          ></textarea
-        ></label>
+          ></textarea>
+        </label>
         <label class="field"
           >Náhledový obrázek<input
             id="image-input"
@@ -1213,13 +1621,16 @@
         const dateHeading = isNewsletter
           ? "Plánované odeslání"
           : "Datum publikace";
-        const copyHeading = isNewsletter ? "Perex newsletteru" : "Text příspěvku";
+        const copyHeading = isNewsletter
+          ? "Perex newsletteru"
+          : "Text příspěvku";
         const emptyCopy = isNewsletter
           ? "Perex zatím není vyplněný."
           : "Text zatím není vyplněný.";
-        const topics = isNewsletter && p.newsletterTopics
-          ? `<h3>Témata newsletteru</h3><p class="copy">${esc(p.newsletterTopics)}</p>`
-          : "";
+        const topics =
+          isNewsletter && p.newsletterTopics
+            ? `<h3>Témata newsletteru</h3><p class="copy">${esc(p.newsletterTopics)}</p>`
+            : "";
         $("panel").innerHTML =
           `<div class="panel-head"><span class="small">${esc(p.type)}</span><button class="close" data-close aria-label="Zavřít detail">×</button></div><h2>${esc(p.title)}</h2><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">${nets(p.channels)}${badge(p.state)}</div><h3>${dateHeading}</h3><p>${dateLabel(p.date)} · ${p.time}</p>${topics}<h3>${copyHeading}</h3><p class="copy">${esc(p.text) || `<span class="small">${emptyCopy}</span>`}</p>${p.url ? `<h3>Odkaz</h3><a href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">${esc(p.url)}</a>` : ""}${p.image ? `<img class="panel-image" src="${p.image}" alt="Náhled příspěvku">` : ""}${p.note ? `<h3>Poznámka</h3><p class="copy">${esc(p.note)}</p>` : ""}<h3>Stav</h3><select class="status-select" aria-label="Změnit stav" id="panel-state">${Object.entries(
             states,
@@ -1657,39 +2068,487 @@
         }
       });
       const hub = { reports: [], billing: [], newsletters: [] };
-      const money = (value) => new Intl.NumberFormat("cs-CZ", { maximumFractionDigits: 0 }).format(Number(value || 0)) + " Kč";
-      const number = (value) => new Intl.NumberFormat("cs-CZ", { maximumFractionDigits: 1 }).format(Number(value || 0));
-      const monthName = (value) => new Date(value + "-01T12:00:00").toLocaleDateString("cs-CZ", { month: "long", year: "numeric" });
-      const hubApi = async (type, action, record) => api(`/api/records?type=${encodeURIComponent(type)}`, {
-        method: action === "list" ? "GET" : "POST",
-        body: action === "list" ? undefined : JSON.stringify({ action, type, record, id: record?.id }),
-      });
+      const money = (value) =>
+        new Intl.NumberFormat("cs-CZ", { maximumFractionDigits: 0 }).format(
+          Number(value || 0),
+        ) + " Kč";
+      const number = (value) =>
+        new Intl.NumberFormat("cs-CZ", { maximumFractionDigits: 1 }).format(
+          Number(value || 0),
+        );
+      const monthName = (value) =>
+        new Date(value + "-01T12:00:00").toLocaleDateString("cs-CZ", {
+          month: "long",
+          year: "numeric",
+        });
+      const hubApi = async (type, action, record) =>
+        api(`/api/records?type=${encodeURIComponent(type)}`, {
+          method: action === "list" ? "GET" : "POST",
+          body:
+            action === "list"
+              ? undefined
+              : JSON.stringify({ action, type, record, id: record?.id }),
+        });
+      const reportRows = (values) =>
+        Object.entries(values).map(([key, row]) => ({ key, ...row }));
+      const augustReport = {
+        id: "2026-08",
+        month: "2026-08",
+        schemaVersion: 3,
+        status: "hotovo",
+        sections: {
+          summary: {
+            title: "Návštěvnost z PPC kampaní celkem",
+            rows: reportRows({
+              visits: {
+                label: "Návštěvy",
+                format: "number",
+                plan: 571,
+                actual: 350,
+                fulfilment: 61,
+              },
+              clicks: {
+                label: "Prokliky",
+                format: "number",
+                plan: 571,
+                actual: 549,
+                fulfilment: 96,
+              },
+              cpc: {
+                label: "Cena za proklik",
+                format: "currency",
+                plan: 47,
+                actual: 41,
+                fulfilment: 87,
+              },
+              budget: {
+                label: "Rozpočet v Kč",
+                format: "currency",
+                plan: 27000,
+                actual: 22508.85,
+                fulfilment: 83,
+              },
+            }),
+          },
+          search: {
+            title: "PPC kampaně ve vyhledávačích Google i Seznam",
+            rows: reportRows({
+              visits: {
+                label: "Návštěvy",
+                format: "number",
+                plan: 511,
+                actual: 350,
+                fulfilment: 69,
+              },
+              clicks: {
+                label: "Prokliky",
+                format: "number",
+                plan: 511,
+                actual: 549,
+                fulfilment: 108,
+              },
+              cpc: {
+                label: "Cena za proklik",
+                format: "currency",
+                plan: 47,
+                actual: 41,
+                fulfilment: 87,
+              },
+              budget: {
+                label: "Rozpočet v Kč",
+                format: "currency",
+                plan: 24000,
+                actual: 22509,
+                fulfilment: 94,
+              },
+            }),
+          },
+          google: {
+            title: "PPC kampaně ve vyhledávačích Google",
+            rows: reportRows({
+              visits: {
+                label: "Návštěvy",
+                format: "number",
+                plan: null,
+                actual: 349,
+              },
+              clicks: {
+                label: "Prokliky",
+                format: "number",
+                plan: null,
+                actual: 546,
+              },
+              cpc: {
+                label: "Cena za proklik",
+                format: "currency",
+                plan: null,
+                actual: 41.2,
+              },
+              budget: {
+                label: "Rozpočet v Kč",
+                format: "currency",
+                plan: null,
+                actual: 22505.8,
+              },
+            }),
+          },
+          seznam: {
+            title: "PPC kampaně ve vyhledávačích Seznam",
+            rows: reportRows({
+              visits: {
+                label: "Návštěvy",
+                format: "number",
+                plan: null,
+                actual: 1,
+              },
+              clicks: {
+                label: "Prokliky",
+                format: "number",
+                plan: null,
+                actual: 3,
+              },
+              cpc: {
+                label: "Cena za proklik",
+                format: "currency",
+                plan: null,
+                actual: 1.03,
+              },
+              budget: {
+                label: "Rozpočet v Kč",
+                format: "currency",
+                plan: null,
+                actual: 3.1,
+              },
+            }),
+          },
+          linkedin: {
+            title: "PPC kampaně na LinkedIn",
+            tag: "Pozastaveno",
+            missing: "n/a",
+            rows: reportRows({
+              impressions: {
+                label: "Zobrazení",
+                format: "number",
+                plan: 20000,
+                actual: null,
+              },
+              visits: {
+                label: "Návštěvy",
+                format: "number",
+                plan: 60,
+                actual: null,
+              },
+              clicks: {
+                label: "Prokliky",
+                format: "number",
+                plan: 60,
+                actual: null,
+              },
+              cpc: {
+                label: "Cena za proklik",
+                format: "currency",
+                plan: 50,
+                actual: null,
+              },
+              budget: {
+                label: "Rozpočet v Kč",
+                format: "currency",
+                plan: 3000,
+                actual: null,
+              },
+            }),
+          },
+        },
+      };
+      function plannedReport(month, searchBudget, linkedinBudget) {
+        const searchTraffic = Math.round(searchBudget / 47),
+          linkedinTraffic = Math.round(linkedinBudget / 50),
+          totalTraffic = searchTraffic + linkedinTraffic,
+          totalBudget = searchBudget + linkedinBudget;
+        return {
+          id: month,
+          month,
+          schemaVersion: 3,
+          status: "plán",
+          sections: {
+            summary: {
+              title: "Návštěvnost z PPC kampaní celkem",
+              rows: reportRows({
+                visits: {
+                  label: "Návštěvy",
+                  format: "number",
+                  plan: totalTraffic,
+                  actual: null,
+                },
+                clicks: {
+                  label: "Prokliky",
+                  format: "number",
+                  plan: totalTraffic,
+                  actual: null,
+                },
+                cpc: {
+                  label: "Cena za proklik",
+                  format: "currency",
+                  plan: Math.round(totalBudget / totalTraffic),
+                  actual: null,
+                },
+                budget: {
+                  label: "Rozpočet v Kč",
+                  format: "currency",
+                  plan: totalBudget,
+                  actual: null,
+                },
+              }),
+            },
+            search: {
+              title: "PPC kampaně ve vyhledávačích Google i Seznam",
+              rows: reportRows({
+                visits: {
+                  label: "Návštěvy",
+                  format: "number",
+                  plan: searchTraffic,
+                  actual: null,
+                },
+                clicks: {
+                  label: "Prokliky",
+                  format: "number",
+                  plan: searchTraffic,
+                  actual: null,
+                },
+                cpc: {
+                  label: "Cena za proklik",
+                  format: "currency",
+                  plan: 47,
+                  actual: null,
+                },
+                budget: {
+                  label: "Rozpočet v Kč",
+                  format: "currency",
+                  plan: searchBudget,
+                  actual: null,
+                },
+              }),
+            },
+            google: {
+              title: "PPC kampaně ve vyhledávačích Google",
+              rows: reportRows({
+                visits: {
+                  label: "Návštěvy",
+                  format: "number",
+                  plan: searchTraffic,
+                  actual: null,
+                },
+                clicks: {
+                  label: "Prokliky",
+                  format: "number",
+                  plan: searchTraffic,
+                  actual: null,
+                },
+                cpc: {
+                  label: "Cena za proklik",
+                  format: "currency",
+                  plan: 47,
+                  actual: null,
+                },
+                budget: {
+                  label: "Rozpočet v Kč",
+                  format: "currency",
+                  plan: searchBudget,
+                  actual: null,
+                },
+              }),
+            },
+            seznam: {
+              title: "PPC kampaně ve vyhledávačích Seznam",
+              rows: reportRows({
+                visits: {
+                  label: "Návštěvy",
+                  format: "number",
+                  plan: 0,
+                  actual: null,
+                },
+                clicks: {
+                  label: "Prokliky",
+                  format: "number",
+                  plan: 0,
+                  actual: null,
+                },
+                cpc: {
+                  label: "Cena za proklik",
+                  format: "currency",
+                  plan: null,
+                  actual: null,
+                },
+                budget: {
+                  label: "Rozpočet v Kč",
+                  format: "currency",
+                  plan: 0,
+                  actual: null,
+                },
+              }),
+            },
+            linkedin: {
+              title: "PPC kampaně na LinkedIn",
+              rows: reportRows({
+                impressions: {
+                  label: "Zobrazení",
+                  format: "number",
+                  plan: null,
+                  actual: null,
+                },
+                visits: {
+                  label: "Návštěvy",
+                  format: "number",
+                  plan: linkedinTraffic,
+                  actual: null,
+                },
+                clicks: {
+                  label: "Prokliky",
+                  format: "number",
+                  plan: linkedinTraffic,
+                  actual: null,
+                },
+                cpc: {
+                  label: "Cena za proklik",
+                  format: "currency",
+                  plan: 50,
+                  actual: null,
+                },
+                budget: {
+                  label: "Rozpočet v Kč",
+                  format: "currency",
+                  plan: linkedinBudget,
+                  actual: null,
+                },
+              }),
+            },
+          },
+        };
+      }
       const reportSeed = [
-        { id: "2026-08", month: "2026-08", title: "Měsíční zpráva · srpen 2026", status: "hotovo", metrics: { visits: [571,350], clicks: [571,549], cpc: [47,41], budget: [27000,22508.85] }, channels: [["Google Ads",349,546,22505.8],["Sklik",1,3,3.1],["LinkedIn",0,0,0]] },
-        ...[["2026-09",34000,717],["2026-10",34000,717],["2026-11",34000,717],["2026-12",23000,486]].map(([month,budget,visits]) => ({ id: month, month, title: `Plán reportingu · ${monthName(month)}`, status: "plán", metrics: { visits: [visits,null], clicks: [visits,null], cpc: [Math.round(budget/visits),null], budget: [budget,null] }, channels: [] })),
+        augustReport,
+        plannedReport("2026-09", 29000, 5000),
+        plannedReport("2026-10", 29000, 5000),
+        plannedReport("2026-11", 29000, 5000),
+        plannedReport("2026-12", 20000, 3000),
       ];
-      const billingSeed = [
-        { id:"2026-08", month:"2026-08", media:[{name:"Google Ads",plan:24000,actual:22505.8},{name:"Sklik",plan:0,actual:3.1},{name:"LinkedIn",plan:3000,actual:0}] },
-        ...[["2026-09",29000,5000],["2026-10",29000,5000],["2026-11",29000,5000],["2026-12",20000,3000]].map(([month,google,linkedin]) => ({ id:month, month, media:[{name:"Google Ads",plan:google,actual:null},{name:"Sklik",plan:0,actual:null},{name:"LinkedIn",plan:linkedin,actual:null}] })),
+      const billingSeed = {
+        id: "2026",
+        year: 2026,
+        schemaVersion: 2,
+        plan: [
+          10000, 34000, 34000, 34000, 34000, 30000, 27000, 27000, 34000, 34000,
+          34000, 23000,
+        ],
+        reductions: Array(12).fill(null),
+        invoices: Array(12).fill(null),
+        channels: [
+          {
+            name: "Google Ads",
+            values: [
+              19061.62,
+              19172.45,
+              30887.1,
+              18164.9,
+              20468,
+              21148.9,
+              12550.9,
+              22505.8,
+              null,
+              null,
+              null,
+              null,
+            ],
+          },
+          {
+            name: "Seznam Sklik",
+            values: [
+              996.6,
+              247.78,
+              158.6,
+              181.7,
+              164.7,
+              63,
+              177,
+              3.1,
+              null,
+              null,
+              null,
+              null,
+            ],
+          },
+          {
+            name: "LinkedIn",
+            values: [
+              null,
+              2440,
+              5604.19,
+              5580,
+              0,
+              0,
+              0,
+              0,
+              null,
+              null,
+              null,
+              null,
+            ],
+          },
+        ],
+      };
+      const monthsCz = [
+        "leden",
+        "únor",
+        "březen",
+        "duben",
+        "květen",
+        "červen",
+        "červenec",
+        "srpen",
+        "září",
+        "říjen",
+        "listopad",
+        "prosinec",
       ];
-      function totals(item) { return { plan: item.media.reduce((sum, row) => sum + Number(row.plan || 0), 0), actual: item.media.reduce((sum, row) => sum + Number(row.actual || 0), 0) }; }
+      const arraySum = (values) =>
+        values.reduce((sum, value) => sum + Number(value || 0), 0);
       async function loadHub() {
         for (const type of Object.keys(hub)) {
           const data = await hubApi(type, "list");
           hub[type] = data.records || [];
         }
-        if (!hub.reports.length) { for (const item of reportSeed) await saveHub("reports", item); }
-        if (!hub.billing.length) { for (const item of billingSeed) await saveHub("billing", item); }
+        for (const item of reportSeed) {
+          const stored = hub.reports.find((entry) => entry.id === item.id);
+          if (!stored || stored.schemaVersion !== 3)
+            await saveHub("reports", item);
+        }
+        const billingYear = hub.billing.find((entry) => entry.id === "2026");
+        if (!billingYear || billingYear.schemaVersion !== 2)
+          await saveHub("billing", billingSeed);
         renderHub();
       }
       async function saveHub(type, item) {
         const data = await hubApi(type, "upsert", item);
-        hub[type] = [...hub[type].filter((entry) => entry.id !== item.id), data.record];
+        hub[type] = [
+          ...hub[type].filter((entry) => entry.id !== item.id),
+          data.record,
+        ];
         renderHub();
       }
       function navTo(view) {
-        document.querySelectorAll(".app-view").forEach((el) => el.classList.toggle("hidden", el.id !== `view-${view}`));
-        document.querySelectorAll("[data-view]").forEach((el) => el.classList.toggle("active", el.dataset.view === view && el.matches("nav button")));
+        document
+          .querySelectorAll(".app-view")
+          .forEach((el) =>
+            el.classList.toggle("hidden", el.id !== `view-${view}`),
+          );
+        document
+          .querySelectorAll("[data-view]")
+          .forEach((el) =>
+            el.classList.toggle(
+              "active",
+              el.dataset.view === view && el.matches("nav button"),
+            ),
+          );
         $("new").style.visibility = view === "content" ? "visible" : "hidden";
         if (view !== "content") selected = null;
         if (view === "content") render();
@@ -1697,41 +2556,158 @@
       }
       document.addEventListener("click", (event) => {
         const trigger = event.target.closest("[data-view]");
-        if (trigger) { event.preventDefault(); navTo(trigger.dataset.view); }
+        if (trigger) {
+          event.preventDefault();
+          navTo(trigger.dataset.view);
+        }
       });
-      function renderHub() { renderReporting(); renderBilling(); renderNewsletters(); }
-      function reportOptions(current) { return [...hub.reports].sort((a,b) => b.month.localeCompare(a.month)).map((item) => `<option value="${item.id}" ${item.id === current ? "selected" : ""}>${esc(monthName(item.month))}</option>`).join(""); }
-      function renderReporting(selectedId = $("report-month")?.value) {
-        const report = hub.reports.find((item) => item.id === selectedId) || hub.reports.find((item) => item.id === "2026-08") || hub.reports[0];
-        if (!report) return;
-        const metrics = [["Návštěvy", "visits", ""], ["Prokliky", "clicks", ""], ["Cena za proklik", "cpc", " Kč"], ["Mediální rozpočet", "budget", " Kč"]];
-        $("view-reporting").innerHTML = `<div class="section-head"><div><h2>Reporting</h2><p>Měsíční přehled výkonu. Budoucí měsíce obsahují ověřený mediaplán, realitu doplníš po importu.</p></div><div><button id="print-report">Tisk / uložit PDF</button></div></div>
-          <div class="surface"><label class="compact-label">Měsíc<select id="report-month">${reportOptions(report.id)}</select></label><p class="view-note">${report.status === "hotovo" ? "Data odpovídají dodané měsíční zprávě." : "Plánované hodnoty jsou předvyplněny z mediaplánu; skutečnost zatím není vyplněna."}</p></div>
-          <div class="metrics">${metrics.map(([label,key,suffix]) => { const [plan,actual] = report.metrics[key]; const value = actual ?? plan; const ratio = actual == null ? "čeká na data" : `${Math.round(actual / plan * 100)} % plánu`; return `<div class="report-card"><span class="label">${label}</span><strong>${key === "budget" ? money(value) : number(value) + suffix}</strong><small>plán: ${key === "budget" ? money(plan) : number(plan) + suffix} · ${ratio}</small></div>`; }).join("")}</div>
-          <div class="surface"><h3>Výkon podle média</h3>${report.channels.length ? `<table class="data-table"><thead><tr><th>Médium</th><th>Návštěvy</th><th>Prokliky</th><th>Útrata</th></tr></thead><tbody>${report.channels.map((row) => `<tr><td>${esc(row[0])}</td><td>${number(row[1])}</td><td>${number(row[2])}</td><td>${money(row[3])}</td></tr>`).join("")}</tbody></table>` : `<p class="view-note">Detail kanálů se zobrazí po nahrání a kontrole měsíčních dat.</p>`}</div>
-          <div class="surface"><h3>Kontrola načtených dat</h3><p class="view-note">Po přepisu hodnot z dodaného Excelu potvrď kontrolu. Tím se plánovaný report označí jako hotový.</p><form id="report-check" class="form-grid"><label>Návštěvy – realita<input name="visits" type="number" min="0" value="${report.metrics.visits[1] ?? ""}"></label><label>Prokliky – realita<input name="clicks" type="number" min="0" value="${report.metrics.clicks[1] ?? ""}"></label><label>CPC – realita<input name="cpc" type="number" min="0" step="0.01" value="${report.metrics.cpc[1] ?? ""}"></label><label>Rozpočet – realita<input name="budget" type="number" min="0" step="0.01" value="${report.metrics.budget[1] ?? ""}"></label><label class="wide"><input name="confirmed" type="checkbox" required> Ověřil/a jsem hodnoty proti zdrojovému Excelu.</label><div class="wide"><button class="primary">Uložit ověřený report</button></div></form></div>`;
-        $("report-month").onchange = (event) => renderReporting(event.target.value);
-        $("print-report").onclick = () => window.print();
-        $("report-check").onsubmit = async (event) => { event.preventDefault(); const values = Object.fromEntries(new FormData(event.currentTarget)); for (const key of ["visits", "clicks", "cpc", "budget"]) report.metrics[key][1] = Number(values[key]); report.status = "hotovo"; await saveHub("reports", report); toast("Ověřený report byl uložen."); };
+      function renderHub() {
+        renderReporting();
+        renderBilling();
+        renderNewsletters();
       }
-      function billingOptions(current) { return [...hub.billing].sort((a,b) => b.month.localeCompare(a.month)).map((item) => `<option value="${item.id}" ${item.id === current ? "selected" : ""}>${esc(monthName(item.month))}</option>`).join(""); }
-      function renderBilling(selectedId = $("billing-month")?.value) {
-        const item = hub.billing.find((entry) => entry.id === selectedId) || hub.billing.find((entry) => entry.id === "2026-08") || hub.billing[0];
+      function reportOptions(current) {
+        return [...hub.reports]
+          .filter((item) => item.schemaVersion === 3)
+          .sort((a, b) => b.month.localeCompare(a.month))
+          .map(
+            (item) =>
+              `<option value="${item.id}" ${item.id === current ? "selected" : ""}>${esc(monthName(item.month))}</option>`,
+          )
+          .join("");
+      }
+      function reportValue(row, value, missing = "–") {
+        if (value === null || value === undefined) return missing;
+        return row.format === "currency"
+          ? `${new Intl.NumberFormat("cs-CZ", { maximumFractionDigits: 2 }).format(value)} Kč`
+          : new Intl.NumberFormat("cs-CZ", { maximumFractionDigits: 1 }).format(
+              value,
+            );
+      }
+      function reportTable(section) {
+        return `<article class="report-block"><div class="report-block-title"><span>${esc(section.title)}</span>${section.tag ? `<span class="tag">${esc(section.tag)}</span>` : ""}</div><table class="comparison-table"><thead><tr><th>Metrika</th><th>Odhad</th><th>Realita</th><th>Plnění</th></tr></thead><tbody>${section.rows
+          .map((row) => {
+            const ratio =
+              row.fulfilment != null
+                ? row.fulfilment / 100
+                : row.plan > 0 && row.actual !== null
+                  ? row.actual / row.plan
+                  : null;
+            return `<tr><td>${esc(row.label)}</td><td>${reportValue(row, row.plan)}</td><td>${reportValue(row, row.actual, section.missing || "–")}</td><td class="fulfilment ${ratio !== null ? (ratio >= 1 ? "over" : "under") : ""}">${ratio === null ? section.missing || "–" : `${row.fulfilment ?? Math.round(ratio * 100)} %`}</td></tr>`;
+          })
+          .join("")}</tbody></table></article>`;
+      }
+      function renderReporting(selectedId = $("report-month")?.value) {
+        const report =
+          hub.reports.find(
+            (item) => item.id === selectedId && item.schemaVersion === 3,
+          ) ||
+          hub.reports.find(
+            (item) => item.id === "2026-08" && item.schemaVersion === 3,
+          );
+        if (!report) return;
+        const editFields = Object.entries(report.sections)
+          .flatMap(([sectionKey, section]) =>
+            section.rows.map(
+              (row) =>
+                `<label>${esc(section.title)} · ${esc(row.label)}<input data-report-section="${sectionKey}" data-report-key="${row.key}" type="number" min="0" step="0.01" value="${row.actual ?? ""}" placeholder="n/a"></label>`,
+            ),
+          )
+          .join("");
+        $("view-reporting").innerHTML =
+          `<div class="section-head"><div><h2>Reporting</h2><p>Měsíční výsledky PPC kampaní rozdělené podle mediálních typů.</p></div><div class="section-actions"><label class="compact-label">Měsíc<select id="report-month">${reportOptions(report.id)}</select></label><button id="print-report">Uložit PDF</button></div></div>
+          <div class="report-cover"><div><span class="eyebrow">Měsíční zpráva</span><h2>${esc(monthName(report.month))}</h2></div><div class="report-status">${report.status === "hotovo" ? "Ověřená data" : "Plán · čeká na skutečnost"}</div></div>
+          <section class="report-section"><h3>Celková návštěvnost webu</h3>${reportTable(report.sections.summary)}</section>
+          <section class="report-section"><h3>PPC kampaně ve vyhledávání</h3>${reportTable(report.sections.search)}<div class="report-grid" style="margin-top:18px">${reportTable(report.sections.google)}${reportTable(report.sections.seznam)}</div></section>
+          <section class="report-section"><h3>LinkedIn${report.sections.linkedin.tag ? ` – ${esc(report.sections.linkedin.tag.toLowerCase())}` : ""}</h3>${reportTable(report.sections.linkedin)}</section>
+          <details class="edit-panel"><summary>Doplnit a zkontrolovat skutečné hodnoty</summary><form id="report-check" class="form-grid">${editFields}<label class="wide"><input name="confirmed" type="checkbox" required> Hodnoty jsem zkontroloval/a proti zdrojovým datům.</label><div class="wide"><button class="primary">Uložit ověřený report</button></div></form></details>`;
+        $("report-month").onchange = (event) =>
+          renderReporting(event.target.value);
+        $("print-report").onclick = () => window.print();
+        $("report-check").onsubmit = async (event) => {
+          event.preventDefault();
+          event.currentTarget
+            .querySelectorAll("[data-report-section]")
+            .forEach((input) => {
+              const row = report.sections[
+                input.dataset.reportSection
+              ].rows.find((item) => item.key === input.dataset.reportKey);
+              row.actual = input.value === "" ? null : Number(input.value);
+              delete row.fulfilment;
+            });
+          report.status = "hotovo";
+          await saveHub("reports", report);
+          toast("Ověřený report byl uložen.");
+        };
+      }
+      function billingCell(value, input = "") {
+        return (
+          input || (value === null || value === undefined ? "" : money(value))
+        );
+      }
+      function renderBilling() {
+        const item = hub.billing.find(
+          (entry) => entry.id === "2026" && entry.schemaVersion === 2,
+        );
         if (!item) return;
-        const sum = totals(item);
-        $("view-billing").innerHTML = `<div class="section-head"><div><h2>Vyúčtování</h2><p>Plán versus skutečné čerpání médií. Skutečnost lze průběžně doplňovat ručně.</p></div><button id="export-billing">Export XLSX</button></div>
-          <div class="surface"><label class="compact-label">Měsíc<select id="billing-month">${billingOptions(item.id)}</select></label></div>
-          <div class="surface"><table class="data-table"><thead><tr><th>Médium</th><th>Plán</th><th>Realita</th><th>Rozdíl</th></tr></thead><tbody>${item.media.map((row,index) => `<tr><td>${esc(row.name)}</td><td>${money(row.plan)}</td><td><input type="number" min="0" step="0.01" data-actual="${index}" value="${row.actual ?? ""}" placeholder="Doplnit"></td><td>${row.actual == null ? "—" : money(row.plan - row.actual)}</td></tr>`).join("")}</tbody><tfoot><tr><th>Celkem</th><th>${money(sum.plan)}</th><th>${money(sum.actual)}</th><th>${money(sum.plan-sum.actual)}</th></tr></tfoot></table><p class="view-note">Před exportem zkontroluj, že součet odpovídá výpisu z jednotlivých reklamních systémů.</p><button class="primary" id="save-billing">Uložit skutečnost</button></div>`;
-        $("billing-month").onchange = (event) => renderBilling(event.target.value);
-        $("save-billing").onclick = async () => { item.media.forEach((row,index) => { const raw = document.querySelector(`[data-actual="${index}"]`).value; row.actual = raw === "" ? null : Number(raw); }); await saveHub("billing", item); toast("Vyúčtování bylo uloženo."); };
-        $("export-billing").onclick = () => { window.location.href = `/api/export-billing?month=${item.month}`; };
+        const invested = monthsCz.map((_, monthIndex) =>
+            arraySum(
+              item.channels.map((channel) => channel.values[monthIndex]),
+            ),
+          ),
+          difference = invested.map((value, index) => item.plan[index] - value);
+        const row = (label, values, className = "") =>
+          `<tr class="${className}"><td>${esc(label)}</td>${values.map((value) => `<td>${billingCell(value)}</td>`).join("")}<td>${money(arraySum(values))}</td></tr>`;
+        const channelRows = item.channels
+          .map(
+            (channel, channelIndex) =>
+              `<tr><td>${esc(channel.name)}</td>${channel.values.map((value, monthIndex) => `<td><input aria-label="${esc(channel.name)} ${monthsCz[monthIndex]}" data-billing-channel="${channelIndex}" data-billing-month="${monthIndex}" type="number" min="0" step="0.01" value="${value ?? ""}"></td>`).join("")}<td>${money(arraySum(channel.values))}</td></tr>`,
+          )
+          .join("");
+        const plannedTotal = arraySum(item.plan),
+          investedTotal = arraySum(invested);
+        $("view-billing").innerHTML =
+          `<div class="section-head"><div><h2>Vyúčtování médií</h2><p>Roční přehled plánu a skutečného čerpání podle reklamních systémů.</p></div><button id="export-billing">Export XLSX</button></div>
+          <div class="billing-summary"><div><span>Plán 2026</span><strong>${money(plannedTotal)}</strong></div><div><span>Investováno</span><strong>${money(investedTotal)}</strong></div><div><span>Zbývá dle plánu</span><strong>${money(plannedTotal - investedTotal)}</strong></div></div>
+          <div class="billing-wrap"><table class="billing-table"><thead><tr><th>${item.year}</th>${monthsCz.map((month) => `<th>${month}</th>`).join("")}<th>Celkem</th></tr></thead><tbody><tr class="group-row"><td colspan="14">Kampaně</td></tr>${row("Plán dle podepsaného mediaplánu", item.plan, "plan-row")}${row("Ponížení", item.reductions, "plan-row")}${row("Fakturace realita", item.invoices, "plan-row")}${row("Investovaný kredit", invested, "total-row")}${channelRows}${row("Rozdíl", difference, "difference-row")}</tbody></table></div>
+          <div class="surface"><p class="view-note">Žlutá pole jsou určena pro ruční doplnění reality. Součty a rozdíly se dopočítají automaticky po uložení.</p><button class="primary" id="save-billing">Uložit skutečné čerpání</button></div>`;
+        $("save-billing").onclick = async () => {
+          document
+            .querySelectorAll("[data-billing-channel]")
+            .forEach((input) => {
+              item.channels[Number(input.dataset.billingChannel)].values[
+                Number(input.dataset.billingMonth)
+              ] = input.value === "" ? null : Number(input.value);
+            });
+          await saveHub("billing", item);
+          toast("Vyúčtování bylo uloženo.");
+        };
+        $("export-billing").onclick = () => {
+          window.location.href = `/api/export-billing?year=${item.year}`;
+        };
       }
       function renderNewsletters() {
-        const records = [...hub.newsletters].sort((a,b) => b.date.localeCompare(a.date));
-        $("view-newsletters").innerHTML = `<div class="section-head"><div><h2>Newslettery</h2><p>Čtvrtletní rozesílky, náhled, odkaz do Mailchimpu a porovnání základních metrik.</p></div></div>
+        const records = [...hub.newsletters].sort((a, b) =>
+          b.date.localeCompare(a.date),
+        );
+        $("view-newsletters").innerHTML =
+          `<div class="section-head"><div><h2>Newslettery</h2><p>Čtvrtletní rozesílky, náhled, odkaz do Mailchimpu a porovnání základních metrik.</p></div></div>
           <div class="surface"><h3>Přidat rozesílku</h3><form id="newsletter-form" class="form-grid"><label>Termín odeslání<input name="date" type="date" required></label><label>Předmět<input name="subject" required placeholder="Např. Novinky ze SPACE PLAN"></label><label class="wide">Perex<input name="perex" required placeholder="Krátké shrnutí, které se zobrazí v přehledu"></label><label>Odkaz na Mailchimp<input name="url" type="url" placeholder="https://mailchi.mp/"></label><label>Náhledový obrázek (URL)<input name="image" type="url" placeholder="https://"></label><label>Témata<textarea name="topics" rows="3" required placeholder="Hlavní témata a CTA"></textarea></label><label>Open rate (%)<input name="openRate" type="number" min="0" max="100" step="0.1"></label><label>Click rate (%)<input name="clickRate" type="number" min="0" max="100" step="0.1"></label><label>Odhlášení<input name="unsubscribes" type="number" min="0"></label><div class="wide"><button class="primary">Uložit newsletter</button></div></form></div>
           <div class="surface"><h3>Porovnání rozesílek</h3>${records.length ? `<table class="data-table"><thead><tr><th>Datum</th><th>Newsletter</th><th>Open rate</th><th>Click rate</th><th>Odhlášení</th><th></th></tr></thead><tbody>${records.map((record) => `<tr><td>${dateLabel(record.date)}</td><td><strong>${esc(record.subject)}</strong><br><small>${esc(record.perex)}</small></td><td>${record.openRate ?? "—"}${record.openRate != null ? " %" : ""}</td><td>${record.clickRate ?? "—"}${record.clickRate != null ? " %" : ""}</td><td>${record.unsubscribes ?? "—"}</td><td>${record.url ? `<a href="${esc(record.url)}" target="_blank" rel="noopener">Otevřít v Mailchimpu</a>` : "—"}</td></tr>`).join("")}</tbody></table>` : `<p class="view-note">Zatím není vložena žádná rozesílka.</p>`}</div>`;
-        $("newsletter-form").onsubmit = async (event) => { event.preventDefault(); const data = Object.fromEntries(new FormData(event.currentTarget)); const record = { ...data, id: crypto.randomUUID(), openRate: data.openRate === "" ? null : Number(data.openRate), clickRate: data.clickRate === "" ? null : Number(data.clickRate), unsubscribes: data.unsubscribes === "" ? null : Number(data.unsubscribes) }; await saveHub("newsletters", record); toast("Newsletter byl uložen."); };
+        $("newsletter-form").onsubmit = async (event) => {
+          event.preventDefault();
+          const data = Object.fromEntries(new FormData(event.currentTarget));
+          const record = {
+            ...data,
+            id: crypto.randomUUID(),
+            openRate: data.openRate === "" ? null : Number(data.openRate),
+            clickRate: data.clickRate === "" ? null : Number(data.clickRate),
+            unsubscribes:
+              data.unsubscribes === "" ? null : Number(data.unsubscribes),
+          };
+          await saveHub("newsletters", record);
+          toast("Newsletter byl uložen.");
+        };
       }
       async function boot() {
         render();
