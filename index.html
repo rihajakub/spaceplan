@@ -820,68 +820,111 @@
         margin: 18px 0;
         overflow-x: auto;
       }
+      #view-reporting {
+        max-width: 1180px;
+      }
       .report-cover {
-        background: #151a22;
+        background:
+          radial-gradient(circle at 86% 10%, #4b424933 0, transparent 34%),
+          #171b22;
         color: white;
-        border-radius: 16px;
-        padding: 28px 30px;
+        border-radius: 14px;
+        padding: 18px 22px;
         display: flex;
         justify-content: space-between;
-        align-items: end;
-        margin-bottom: 26px;
+        align-items: center;
+        margin-bottom: 18px;
+        box-shadow: 0 12px 30px #151a2214;
       }
       .report-cover .eyebrow {
-        color: #b7bcc7;
-        font-size: 12px;
+        color: #c9bcc5;
+        font-size: 10px;
         letter-spacing: 0.12em;
         text-transform: uppercase;
       }
       .report-cover h2 {
-        font-size: 34px;
-        margin: 7px 0 0;
+        font-size: 27px;
+        margin: 4px 0 0;
       }
       .report-cover .report-status {
-        color: #d8dbe2;
+        color: #f5f3f4;
         text-align: right;
+        border: 1px solid #ffffff24;
+        border-radius: 999px;
+        background: #ffffff0f;
+        padding: 7px 11px;
+        font-size: 12px;
+        font-weight: 700;
       }
       .print-report-header {
         display: none;
       }
       .report-section {
-        margin: 30px 0;
+        margin: 18px 0 22px;
       }
       .report-section > h3 {
-        font-size: 21px;
-        margin: 0 0 12px;
-        padding-bottom: 8px;
-        border-bottom: 2px solid #1d222b;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-size: 18px;
+        margin: 0 0 9px;
+        padding: 0;
+        border: 0;
+      }
+      #view-reporting > .section-head {
+        align-items: center;
+        margin-bottom: 14px;
+      }
+      #view-reporting > .section-head h2 {
+        margin-bottom: 3px;
+      }
+      #view-reporting > .section-head p {
+        margin: 0;
+      }
+      #view-reporting > .section-head select {
+        background: #fff;
+      }
+      .section-index {
+        display: inline-grid;
+        place-items: center;
+        width: 26px;
+        height: 26px;
+        border-radius: 8px;
+        background: #eee8ec;
+        color: #675c64;
+        font-size: 11px;
+        letter-spacing: 0.04em;
       }
       .report-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 18px;
+        gap: 14px;
       }
       .report-block {
         background: white;
-        border: 1px solid var(--line);
+        border: 1px solid #e2e6ec;
         border-radius: 12px;
         overflow: hidden;
+        box-shadow: 0 5px 18px #1a223008;
       }
       .report-block-title {
         display: flex;
         justify-content: space-between;
         gap: 12px;
         align-items: center;
-        padding: 14px 16px;
-        background: #d9d9da;
+        padding: 10px 13px;
+        background: linear-gradient(90deg, #f5f1f4 0%, #fbfbfc 78%);
+        border-left: 3px solid #b3a5ad;
         font-weight: 700;
+        font-size: 13px;
       }
       .report-block-title .tag {
-        background: #fff;
+        background: #fff7e8;
+        border: 1px solid #f2ddba;
         border-radius: 999px;
-        font-size: 12px;
-        padding: 4px 9px;
-        color: #616977;
+        font-size: 10px;
+        padding: 3px 8px;
+        color: #8b5a0a;
       }
       .comparison-table {
         width: 100%;
@@ -889,16 +932,18 @@
       }
       .comparison-table th,
       .comparison-table td {
-        border-top: 1px solid #fff;
-        padding: 11px 15px;
+        border-top: 1px solid #e9edf2;
+        padding: 9px 13px;
         text-align: right;
-        background: #f1f1f2;
+        background: #fff;
       }
       .comparison-table th {
-        color: #626a78;
-        font-size: 12px;
+        color: #778090;
+        font-size: 10px;
         font-weight: 700;
-        background: #e6e6e7;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        background: #f8f9fb;
       }
       .comparison-table th:first-child,
       .comparison-table td:first-child {
@@ -908,6 +953,38 @@
       .comparison-table .fulfilment {
         font-weight: 800;
       }
+      .comparison-table tbody tr:hover td {
+        background: #fcfafb;
+      }
+      .comparison-table td:nth-child(2) {
+        color: #747d8d;
+      }
+      .comparison-table td:nth-child(3) {
+        color: #161b23;
+        font-weight: 700;
+      }
+      .fulfilment-pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 7px;
+        min-width: 92px;
+      }
+      .fulfilment-track {
+        position: relative;
+        display: inline-block;
+        width: 38px;
+        height: 5px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: #eceff3;
+      }
+      .fulfilment-track i {
+        position: absolute;
+        inset: 0 auto 0 0;
+        border-radius: inherit;
+        background: currentColor;
+      }
       .comparison-table .over {
         color: #08784a;
       }
@@ -915,15 +992,17 @@
         color: #a36006;
       }
       .edit-panel {
-        margin-top: 30px;
+        margin-top: 22px;
         border: 1px solid var(--line);
         border-radius: 12px;
         background: #fff;
       }
       .edit-panel summary {
         cursor: pointer;
-        padding: 16px 18px;
+        padding: 13px 16px;
         font-weight: 700;
+        color: #4f5867;
+        font-size: 13px;
       }
       .edit-panel form {
         border-top: 1px solid var(--line);
@@ -1188,6 +1267,21 @@
         }
         .comparison-table th {
           font-size: 7.5pt;
+        }
+        .section-index {
+          width: 20px;
+          height: 20px;
+          border-radius: 5px;
+          font-size: 7.5pt;
+        }
+        .fulfilment-pill {
+          min-width: 0;
+        }
+        .fulfilment-track {
+          display: none;
+        }
+        .comparison-table tbody tr:hover td {
+          background: #fff;
         }
       }
     </style>
@@ -2662,7 +2756,15 @@
                 : row.plan > 0 && row.actual !== null
                   ? row.actual / row.plan
                   : null;
-            return `<tr><td>${esc(row.label)}</td><td>${reportValue(row, row.plan)}</td><td>${reportValue(row, row.actual, section.missing || "–")}</td><td class="fulfilment ${ratio !== null ? (ratio >= 1 ? "over" : "under") : ""}">${ratio === null ? section.missing || "–" : `${row.fulfilment ?? Math.round(ratio * 100)} %`}</td></tr>`;
+            const percent =
+                ratio === null
+                  ? null
+                  : row.fulfilment ?? Math.round(ratio * 100),
+              fulfilment =
+                percent === null
+                  ? section.missing || "–"
+                  : `<span class="fulfilment-pill"><span>${percent} %</span><span class="fulfilment-track" aria-hidden="true"><i style="width:${Math.min(Math.max(percent, 0), 100)}%"></i></span></span>`;
+            return `<tr><td>${esc(row.label)}</td><td>${reportValue(row, row.plan)}</td><td>${reportValue(row, row.actual, section.missing || "–")}</td><td class="fulfilment ${ratio !== null ? (ratio >= 1 ? "over" : "under") : ""}">${fulfilment}</td></tr>`;
           })
           .join("")}</tbody></table></article>`;
       }
@@ -2687,9 +2789,9 @@
           `<div class="section-head"><div><h2>Reporting</h2><p>Měsíční výsledky PPC kampaní rozdělené podle mediálních typů.</p></div><div class="section-actions"><label class="compact-label">Měsíc<select id="report-month">${reportOptions(report.id)}</select></label><button id="print-report">Uložit PDF</button></div></div>
           <div class="print-report-header"><img src="/assets/spaceplan-negative.svg" alt="SPACE PLAN"><strong>Měsíční report - ${esc(monthName(report.month))}</strong></div>
           <div class="report-cover"><div><span class="eyebrow">Měsíční zpráva</span><h2>${esc(monthName(report.month))}</h2></div><div class="report-status">${report.status === "hotovo" ? "Ověřená data" : "Plán · čeká na skutečnost"}</div></div>
-          <section class="report-section"><h3>Celková návštěvnost webu</h3>${reportTable(report.sections.summary)}</section>
-          <section class="report-section"><h3>PPC kampaně ve vyhledávání</h3>${reportTable(report.sections.search)}<div class="report-grid" style="margin-top:18px">${reportTable(report.sections.google)}${reportTable(report.sections.seznam)}</div></section>
-          <div class="print-page-two"><div class="print-report-header"><img src="/assets/spaceplan-negative.svg" alt="SPACE PLAN"><strong>Měsíční report - ${esc(monthName(report.month))}</strong></div><section class="report-section"><h3>LinkedIn${report.sections.linkedin.tag ? ` – ${esc(report.sections.linkedin.tag.toLowerCase())}` : ""}</h3>${reportTable(report.sections.linkedin)}</section></div>
+          <section class="report-section"><h3><span class="section-index">01</span>Celková návštěvnost webu</h3>${reportTable(report.sections.summary)}</section>
+          <section class="report-section"><h3><span class="section-index">02</span>PPC kampaně ve vyhledávání</h3>${reportTable(report.sections.search)}<div class="report-grid" style="margin-top:14px">${reportTable(report.sections.google)}${reportTable(report.sections.seznam)}</div></section>
+          <div class="print-page-two"><div class="print-report-header"><img src="/assets/spaceplan-negative.svg" alt="SPACE PLAN"><strong>Měsíční report - ${esc(monthName(report.month))}</strong></div><section class="report-section"><h3><span class="section-index">03</span>LinkedIn${report.sections.linkedin.tag ? ` – ${esc(report.sections.linkedin.tag.toLowerCase())}` : ""}</h3>${reportTable(report.sections.linkedin)}</section></div>
           <details class="edit-panel"><summary>Doplnit a zkontrolovat skutečné hodnoty</summary><form id="report-check" class="form-grid">${editFields}<label class="wide"><input name="confirmed" type="checkbox" required> Hodnoty jsem zkontroloval/a proti zdrojovým datům.</label><div class="wide"><button class="primary">Uložit ověřený report</button></div></form></details>`;
         $("report-month").onchange = (event) =>
           renderReporting(event.target.value);
