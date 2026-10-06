@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/content-plan", "destination": "/index.html" },
+    { "source": "/reporting", "destination": "/index.html" },
+    { "source": "/vyuctovani", "destination": "/index.html" },
+    { "source": "/newslettery", "destination": "/index.html" }
+  ]
+}

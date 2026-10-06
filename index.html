@@ -77,6 +77,8 @@
         display: flex;
         gap: 13px;
         align-items: center;
+        color: inherit;
+        text-decoration: none;
       }
       .logo {
         width: 52px;
@@ -754,6 +756,8 @@
         display: flex;
         flex-direction: column;
         gap: 12px;
+        color: inherit;
+        text-decoration: none;
       }
       .hub-card:hover {
         border-color: #a9afbd;
@@ -805,13 +809,15 @@
         gap: 6px;
         align-items: center;
       }
-      .nav button {
+      .nav a {
         border: 0;
         background: transparent;
         color: var(--muted);
         padding: 9px 11px;
+        border-radius: 8px;
+        text-decoration: none;
       }
-      .nav button.active {
+      .nav a.active {
         color: var(--text);
         background: #eef2ff;
       }
@@ -1454,19 +1460,19 @@
   </head>
   <body>
     <header>
-      <div class="brand">
+      <a class="brand" href="/" data-view="home">
         <img class="logo" src="/assets/sp_logo.png" alt="SP" />
         <div>
           <h1>SPACE PLAN</h1>
           <div class="small">Marketingový přehled</div>
         </div>
-      </div>
+      </a>
       <nav class="nav" aria-label="Hlavní navigace">
-        <button data-view="home" class="active">Přehled</button>
-        <button data-view="content">Content plán</button>
-        <button data-view="reporting">Reporting</button>
-        <button data-view="billing">Vyúčtování</button>
-        <button data-view="newsletters">Newslettery</button>
+        <a href="/" data-view="home" class="active">Přehled</a>
+        <a href="/content-plan" data-view="content">Content plán</a>
+        <a href="/reporting" data-view="reporting">Reporting</a>
+        <a href="/vyuctovani" data-view="billing">Vyúčtování</a>
+        <a href="/newslettery" data-view="newsletters">Newslettery</a>
       </nav>
       <button class="primary" id="new" disabled>＋ Nový příspěvek</button>
     </header>
@@ -1479,7 +1485,7 @@
         </p>
       </div>
       <div class="hub-grid">
-        <button class="hub-card" data-view="content">
+        <a class="hub-card" href="/content-plan" data-view="content">
           <span class="icon">▦</span>
           <h3>Content plán</h3>
           <p>
@@ -1487,8 +1493,8 @@
             společná pro celý tým.
           </p>
           <span>Otevřít plán →</span>
-        </button>
-        <button class="hub-card" data-view="reporting">
+        </a>
+        <a class="hub-card" href="/reporting" data-view="reporting">
           <span class="icon">↗</span>
           <h3>Reporting</h3>
           <p>
@@ -1496,16 +1502,16 @@
             PDF.
           </p>
           <span>Otevřít reporting →</span>
-        </button>
-        <button class="hub-card" data-view="billing">
+        </a>
+        <a class="hub-card" href="/vyuctovani" data-view="billing">
           <span class="icon">⌁</span>
           <h3>Vyúčtování</h3>
           <p>
             Porovnání plánovaných a skutečně vyčerpaných investic podle média.
           </p>
           <span>Otevřít vyúčtování →</span>
-        </button>
-        <button class="hub-card" data-view="newsletters">
+        </a>
+        <a class="hub-card" href="/newslettery" data-view="newsletters">
           <span class="icon">✉</span>
           <h3>Newslettery</h3>
           <p>
@@ -1513,7 +1519,7 @@
             jejich výkonu.
           </p>
           <span>Otevřít newslettery →</span>
-        </button>
+        </a>
       </div>
     </section>
     <section id="view-content" class="app-view shell hidden">
@@ -3200,32 +3206,70 @@
         ];
         renderHub();
       }
-      function navTo(view) {
+      const viewRoutes = {
+          home: "/",
+          content: "/content-plan",
+          reporting: "/reporting",
+          billing: "/vyuctovani",
+          newsletters: "/newslettery",
+        },
+        viewTitles = {
+          home: "Marketingový přehled",
+          content: "Content plán",
+          reporting: "Reporting",
+          billing: "Vyúčtování",
+          newsletters: "Newslettery",
+        };
+      function viewFromPath() {
+        const path = window.location.pathname.replace(/\/+$/, "") || "/";
+        return (
+          Object.entries(viewRoutes).find(([, route]) => route === path)?.[0] ||
+          "home"
+        );
+      }
+      function navTo(view, options = {}) {
+        if (!viewRoutes[view]) view = "home";
         document
           .querySelectorAll(".app-view")
           .forEach((el) =>
             el.classList.toggle("hidden", el.id !== `view-${view}`),
           );
         document
-          .querySelectorAll("[data-view]")
-          .forEach((el) =>
-            el.classList.toggle(
-              "active",
-              el.dataset.view === view && el.matches("nav button"),
-            ),
-          );
+          .querySelectorAll(".nav [data-view]")
+          .forEach((el) => {
+            const active = el.dataset.view === view;
+            el.classList.toggle("active", active);
+            if (active) el.setAttribute("aria-current", "page");
+            else el.removeAttribute("aria-current");
+          });
         $("new").style.visibility = view === "content" ? "visible" : "hidden";
         if (view !== "content") selected = null;
         if (view === "content") render();
+        if (options.updateHistory) {
+          const method = options.replaceHistory ? "replaceState" : "pushState";
+          window.history[method]({ view }, "", viewRoutes[view]);
+        }
+        document.title = `${viewTitles[view]} | SPACE PLAN`;
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
       document.addEventListener("click", (event) => {
         const trigger = event.target.closest("[data-view]");
-        if (trigger) {
+        if (
+          trigger &&
+          event.button === 0 &&
+          !event.metaKey &&
+          !event.ctrlKey &&
+          !event.shiftKey &&
+          !event.altKey
+        ) {
           event.preventDefault();
-          navTo(trigger.dataset.view);
+          const view = trigger.dataset.view;
+          navTo(view, {
+            updateHistory: viewRoutes[view] !== window.location.pathname,
+          });
         }
       });
+      window.addEventListener("popstate", () => navTo(viewFromPath()));
       function renderHub() {
         renderReporting();
         renderBilling();
@@ -3453,6 +3497,11 @@
       }
       async function boot() {
         render();
+        const initialView = viewFromPath();
+        navTo(initialView, {
+          updateHistory: viewRoutes[initialView] !== window.location.pathname,
+          replaceHistory: true,
+        });
         try {
           await openDB();
           render();
@@ -3471,7 +3520,7 @@
           console.warn("Hub data unavailable", err);
           toast("Přehledová data se zatím nepodařilo načíst.");
         }
-        navTo("home");
+        navTo(viewFromPath());
         const context = document.modelContext;
         if (context?.registerTool) {
           try {
