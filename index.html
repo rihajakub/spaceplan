@@ -1024,6 +1024,154 @@
         font-weight: 600;
         font-size: 13px;
       }
+      .newsletter-feature {
+        overflow: hidden;
+        margin-bottom: 18px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: #fff;
+        box-shadow: 0 10px 30px #1822390a;
+      }
+      .newsletter-feature-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 20px 22px;
+        background:
+          radial-gradient(circle at 84% 8%, #6d5e6638 0, transparent 34%),
+          #171b22;
+        color: #fff;
+      }
+      .newsletter-feature-head .eyebrow {
+        color: #c9bcc5;
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .newsletter-feature-head h3 {
+        margin: 4px 0 3px;
+        font-size: 21px;
+      }
+      .newsletter-feature-head p {
+        margin: 0;
+        color: #c9ced8;
+        font-size: 13px;
+      }
+      .newsletter-preview-link {
+        flex: 0 0 auto;
+        border: 1px solid #ffffff38;
+        border-radius: 8px;
+        padding: 8px 12px;
+        background: #ffffff12;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .newsletter-kpis {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1px;
+        background: var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .newsletter-kpis > div {
+        padding: 15px 18px;
+        background: #fff;
+      }
+      .newsletter-kpis span {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .newsletter-kpis strong {
+        display: block;
+        margin-top: 4px;
+        font-size: 22px;
+      }
+      .newsletter-kpis small {
+        color: var(--muted);
+      }
+      .newsletter-detail-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.55fr);
+        gap: 18px;
+        padding: 20px 22px;
+      }
+      .newsletter-chart,
+      .newsletter-metrics {
+        min-width: 0;
+        border: 1px solid #e5e8ed;
+        border-radius: 12px;
+        background: #fff;
+      }
+      .newsletter-chart-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 13px 15px 0;
+      }
+      .newsletter-chart-head h4,
+      .newsletter-metrics h4,
+      .newsletter-clicks h4 {
+        margin: 0;
+        font-size: 14px;
+      }
+      .newsletter-chart-head strong {
+        font-size: 20px;
+      }
+      .newsletter-chart svg {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .newsletter-chart-note {
+        margin: 0;
+        padding: 0 15px 13px;
+        color: var(--muted);
+        font-size: 11px;
+      }
+      .newsletter-metrics h4 {
+        padding: 13px 15px 8px;
+      }
+      .newsletter-metrics table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12px;
+      }
+      .newsletter-metrics td {
+        padding: 7px 15px;
+        border-top: 1px solid #edf0f4;
+      }
+      .newsletter-metrics td:last-child {
+        text-align: right;
+        font-weight: 700;
+      }
+      .newsletter-clicks {
+        padding: 0 22px 20px;
+      }
+      .newsletter-clicks h4 {
+        margin-bottom: 8px;
+      }
+      .newsletter-table-wrap {
+        overflow-x: auto;
+        border: 1px solid #e5e8ed;
+        border-radius: 10px;
+      }
+      .newsletter-table-wrap .data-table {
+        min-width: 700px;
+      }
+      .newsletter-table-wrap .data-table td,
+      .newsletter-table-wrap .data-table th {
+        padding: 9px 11px;
+      }
+      .newsletter-table-wrap a {
+        color: var(--blue);
+        font-weight: 650;
+        text-decoration: none;
+      }
       .billing-wrap {
         overflow: auto;
         border: 1px solid #cfd5df;
@@ -1156,6 +1304,9 @@
         .report-grid {
           grid-template-columns: 1fr;
         }
+        .newsletter-detail-grid {
+          grid-template-columns: 1fr;
+        }
         .nav {
           display: none;
         }
@@ -1176,6 +1327,18 @@
         }
         .report-cover .report-status {
           text-align: left;
+        }
+        .newsletter-feature-head {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .newsletter-kpis {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .newsletter-detail-grid,
+        .newsletter-clicks {
+          padding-left: 14px;
+          padding-right: 14px;
         }
       }
       @page {
@@ -2426,6 +2589,176 @@
           },
         },
       };
+      const septemberReport = {
+        id: "2026-09",
+        month: "2026-09",
+        schemaVersion: 3,
+        dataVersion: 2,
+        status: "hotovo",
+        sections: {
+          summary: {
+            title: "Návštěvnost z PPC kampaní celkem",
+            rows: reportRows({
+              visits: {
+                label: "Návštěvy",
+                format: "number",
+                plan: 1033,
+                actual: 222,
+                fulfilment: 21,
+              },
+              clicks: {
+                label: "Prokliky",
+                format: "number",
+                plan: 1033,
+                actual: 482,
+                fulfilment: 47,
+              },
+              cpc: {
+                label: "Cena za proklik",
+                format: "currency",
+                plan: 27,
+                actual: 53,
+                fulfilment: 195,
+              },
+              budget: {
+                label: "Rozpočet v Kč",
+                format: "currency",
+                plan: 28000,
+                actual: 25479.67,
+                fulfilment: 91,
+              },
+            }),
+          },
+          search: {
+            title: "PPC kampaně ve vyhledávačích Google i Seznam",
+            rows: reportRows({
+              visits: {
+                label: "Návštěvy",
+                format: "number",
+                plan: 533,
+                actual: 222,
+                fulfilment: 42,
+              },
+              clicks: {
+                label: "Prokliky",
+                format: "number",
+                plan: 533,
+                actual: 482,
+                fulfilment: 90,
+              },
+              cpc: {
+                label: "Cena za proklik",
+                format: "currency",
+                plan: 45,
+                actual: 53,
+                fulfilment: 117,
+              },
+              budget: {
+                label: "Rozpočet v Kč",
+                format: "currency",
+                plan: 24000,
+                actual: 25479.67,
+                fulfilment: 106,
+              },
+            }),
+          },
+          google: {
+            title: "PPC kampaně ve vyhledávačích Google",
+            rows: reportRows({
+              visits: {
+                label: "Návštěvy",
+                format: "number",
+                plan: null,
+                actual: 221,
+              },
+              clicks: {
+                label: "Prokliky",
+                format: "number",
+                plan: null,
+                actual: 472,
+              },
+              cpc: {
+                label: "Cena za proklik",
+                format: "currency",
+                plan: null,
+                actual: 53.48,
+              },
+              budget: {
+                label: "Rozpočet v Kč",
+                format: "currency",
+                plan: null,
+                actual: 25244.27,
+              },
+            }),
+          },
+          seznam: {
+            title: "PPC kampaně ve vyhledávačích Seznam",
+            rows: reportRows({
+              visits: {
+                label: "Návštěvy",
+                format: "number",
+                plan: null,
+                actual: 1,
+              },
+              clicks: {
+                label: "Prokliky",
+                format: "number",
+                plan: null,
+                actual: 10,
+              },
+              cpc: {
+                label: "Cena za proklik",
+                format: "currency",
+                plan: null,
+                actual: 23.54,
+              },
+              budget: {
+                label: "Rozpočet v Kč",
+                format: "currency",
+                plan: null,
+                actual: 235.4,
+              },
+            }),
+          },
+          linkedin: {
+            title: "PPC kampaně na LinkedIn",
+            tag: "Pozastaveno",
+            missing: "n/a",
+            rows: reportRows({
+              impressions: {
+                label: "Zobrazení",
+                format: "number",
+                plan: 33333,
+                actual: null,
+              },
+              visits: {
+                label: "Návštěvy",
+                format: "number",
+                plan: 100,
+                actual: null,
+              },
+              clicks: {
+                label: "Prokliky",
+                format: "number",
+                plan: 100,
+                actual: null,
+              },
+              cpc: {
+                label: "Cena za proklik",
+                format: "currency",
+                plan: 50,
+                actual: null,
+              },
+              budget: {
+                label: "Rozpočet v Kč",
+                format: "currency",
+                plan: 5000,
+                actual: null,
+              },
+            }),
+          },
+        },
+      };
       function plannedReport(month, searchBudget, linkedinBudget) {
         const searchTraffic = Math.round(searchBudget / 47),
           linkedinTraffic = Math.round(linkedinBudget / 50),
@@ -2593,11 +2926,103 @@
       }
       const reportSeed = [
         augustReport,
-        plannedReport("2026-09", 29000, 5000),
+        septemberReport,
         plannedReport("2026-10", 29000, 5000),
         plannedReport("2026-11", 29000, 5000),
         plannedReport("2026-12", 20000, 3000),
       ];
+      const newsletterSeed = {
+        id: "newsletter-2026-09",
+        dataVersion: 1,
+        date: "2026-09-21",
+        deliveryTime: "2026-09-21T04:12:00",
+        title: "Newsletter 09/2026",
+        subject: "Jak připravit změnu kanceláře, aby fungovala lidem i firmě",
+        perex:
+          "Praktické tipy pro změnu kanceláře, rekonstrukci za provozu a správné nastavení pracovního prostředí.",
+        topics:
+          "Open space a jeho návrh\nRekonstrukce kanceláře za provozu\nNáklady na fit-out kanceláře v roce 2026",
+        url: "https://mailchi.mp/a811c4e7d76e/newsletter112025-14196227",
+        recipients: 211,
+        delivered: 200,
+        bounces: 11,
+        bounceRate: 5.2,
+        uniqueOpens: 48,
+        openRate: 24,
+        totalOpens: 131,
+        lastOpenAt: "2026-09-30T03:23:00",
+        uniqueClicks: 5,
+        clickRate: 2.5,
+        totalClicks: 13,
+        lastClickAt: "2026-09-24T06:23:00",
+        unsubscribes: 0,
+        complaints: 0,
+        forwarded: 0,
+        forwardedOpens: 0,
+        timelineLimited: true,
+        openTimeline: [
+          {
+            at: "2026-09-21T04:12:00",
+            opens: 0,
+            label: "Odeslání",
+          },
+          {
+            at: "2026-09-30T03:23:00",
+            opens: 131,
+            label: "Poslední otevření",
+          },
+        ],
+        clicks: [
+          {
+            label: "Open space: kdy funguje a jak jej navrhnout",
+            url: "https://www.spaceplan.cz/svet-spaceplan/open-space-kdy-funguje-a-jak-jej-navrhnout",
+            total: 8,
+            unique: 5,
+          },
+          {
+            label: "Kolik stojí fit-out kanceláře v roce 2026",
+            url: "https://www.spaceplan.cz/svet-spaceplan/kolik-stoji-fit-out-kancelare-v-roce-2026",
+            total: 4,
+            unique: 3,
+          },
+          {
+            label: "Rekonstrukce kanceláře za provozu",
+            url: "https://www.spaceplan.cz/svet-spaceplan/rekonstrukce-kancelare-za-provozu",
+            total: 1,
+            unique: 1,
+          },
+          {
+            label: "SPACE PLAN",
+            url: "https://www.spaceplan.cz/",
+            total: 0,
+            unique: 0,
+          },
+          {
+            label: "Facebook SPACE PLAN",
+            url: "https://facebook.com/spaceplan/",
+            total: 0,
+            unique: 0,
+          },
+          {
+            label: "Instagram SPACE PLAN",
+            url: "https://instagram.com/spaceplancz/",
+            total: 0,
+            unique: 0,
+          },
+          {
+            label: "LinkedIn SPACE PLAN",
+            url: "https://www.linkedin.com/company/space-plan-cz/",
+            total: 0,
+            unique: 0,
+          },
+          {
+            label: "Přihlášení k odběru",
+            url: "http://eepurl.com/i3RRW-",
+            total: 0,
+            unique: 0,
+          },
+        ],
+      };
       const billingSeed = {
         id: "2026",
         year: 2026,
@@ -2685,12 +3110,24 @@
         }
         for (const item of reportSeed) {
           const stored = hub.reports.find((entry) => entry.id === item.id);
-          if (!stored || stored.schemaVersion !== 3)
+          if (
+            !stored ||
+            stored.schemaVersion !== item.schemaVersion ||
+            stored.dataVersion !== item.dataVersion
+          )
             await saveHub("reports", item);
         }
         const billingYear = hub.billing.find((entry) => entry.id === "2026");
         if (!billingYear || billingYear.schemaVersion !== 2)
           await saveHub("billing", billingSeed);
+        const storedNewsletter = hub.newsletters.find(
+          (entry) => entry.id === newsletterSeed.id,
+        );
+        if (
+          !storedNewsletter ||
+          storedNewsletter.dataVersion !== newsletterSeed.dataVersion
+        )
+          await saveHub("newsletters", newsletterSeed);
         renderHub();
       }
       async function saveHub(type, item) {
@@ -2776,9 +3213,11 @@
           hub.reports.find(
             (item) => item.id === selectedId && item.schemaVersion === 3,
           ) ||
-          hub.reports.find(
-            (item) => item.id === "2026-08" && item.schemaVersion === 3,
-          );
+          hub.reports
+            .filter(
+              (item) => item.schemaVersion === 3 && item.status === "hotovo",
+            )
+            .sort((a, b) => b.month.localeCompare(a.month))[0];
         if (!report) return;
         const editFields = Object.entries(report.sections)
           .flatMap(([sectionKey, section]) =>
@@ -2861,14 +3300,80 @@
           window.location.href = `/api/export-billing?year=${item.year}`;
         };
       }
+      function newsletterTimeLabel(value) {
+        if (!value) return "—";
+        return new Date(value).toLocaleString("cs-CZ", {
+          day: "numeric",
+          month: "numeric",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+      }
+      function newsletterOpenChart(record) {
+        const points = record.openTimeline || [];
+        if (!points.length)
+          return `<div class="newsletter-chart"><div class="newsletter-chart-head"><h4>Otevření v čase</h4></div><p class="newsletter-chart-note">Časová data zatím nejsou k dispozici.</p></div>`;
+        const width = 720,
+          height = 220,
+          left = 48,
+          right = 18,
+          top = 24,
+          bottom = 42,
+          maxValue = Math.max(...points.map((point) => point.opens), 1),
+          chartWidth = width - left - right,
+          chartHeight = height - top - bottom,
+          coordinates = points.map((point, index) => ({
+            ...point,
+            x:
+              points.length === 1
+                ? left + chartWidth / 2
+                : left + (index / (points.length - 1)) * chartWidth,
+            y: top + chartHeight - (point.opens / maxValue) * chartHeight,
+          })),
+          ticks = Array.from({ length: 5 }, (_, index) => {
+            const value = Math.round((maxValue / 4) * index),
+              y = top + chartHeight - (index / 4) * chartHeight;
+            return `<line x1="${left}" y1="${y}" x2="${width - right}" y2="${y}" stroke="#e8ebf0"/><text x="${left - 9}" y="${y + 4}" text-anchor="end" fill="#7b8493" font-size="11">${number(value)}</text>`;
+          }).join(""),
+          path = coordinates
+            .map((point, index) => `${index ? "L" : "M"}${point.x},${point.y}`)
+            .join(" "),
+          markers = coordinates
+            .map(
+              (point) =>
+                `<circle cx="${point.x}" cy="${point.y}" r="5" fill="#171b22" stroke="#fff" stroke-width="3"/><text x="${point.x}" y="${point.y - 12}" text-anchor="middle" fill="#171b22" font-size="12" font-weight="700">${number(point.opens)}</text><text x="${point.x}" y="${height - 15}" text-anchor="middle" fill="#687389" font-size="11">${new Date(point.at).toLocaleDateString("cs-CZ", { day: "numeric", month: "numeric" })}</text>`,
+            )
+            .join("");
+        return `<div class="newsletter-chart"><div class="newsletter-chart-head"><div><h4>Otevření v čase</h4></div><strong>${number(record.totalOpens)}×</strong></div><svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Vývoj celkového počtu otevření newsletteru"><title>Vývoj celkového počtu otevření newsletteru</title>${ticks}<path d="${path}" fill="none" stroke="#8b717f" stroke-width="3" stroke-linecap="round" ${record.timelineLimited ? `stroke-dasharray="7 6"` : ""}/>${markers}</svg><p class="newsletter-chart-note">${record.timelineLimited ? "Souhrnný export obsahuje pouze čas odeslání a poslední zaznamenané otevření. Přerušovaná spojnice nevyjadřuje mezilehlé tempo." : "Kumulativní počet otevření od odeslání."}</p></div>`;
+      }
+      function newsletterFeature(record) {
+        const metrics = [
+          ["Celkem adresátů", number(record.recipients)],
+          ["Úspěšně doručeno", number(record.delivered)],
+          ["Nedoručeno", `${number(record.bounces)} (${record.bounceRate} %)`],
+          ["Příjemci, kteří otevřeli", `${number(record.uniqueOpens)} (${record.openRate} %)`],
+          ["Celková otevření", number(record.totalOpens)],
+          ["Poslední otevření", newsletterTimeLabel(record.lastOpenAt)],
+          ["Příjemci, kteří klikli", `${number(record.uniqueClicks)} (${record.clickRate} %)`],
+          ["Celková kliknutí", number(record.totalClicks)],
+          ["Poslední kliknutí", newsletterTimeLabel(record.lastClickAt)],
+          ["Odhlášení", number(record.unsubscribes)],
+          ["Stížnosti", number(record.complaints)],
+          ["Přeposlání", number(record.forwarded)],
+        ];
+        return `<article class="newsletter-feature"><div class="newsletter-feature-head"><div><span class="eyebrow">${esc(record.title || "Newsletter")}</span><h3>${esc(record.subject)}</h3><p>Odesláno ${newsletterTimeLabel(record.deliveryTime || record.date)}</p></div>${record.url ? `<a class="newsletter-preview-link" href="${esc(record.url)}" target="_blank" rel="noopener">Otevřít náhled ↗</a>` : ""}</div><div class="newsletter-kpis"><div><span>Doručeno</span><strong>${number(record.delivered)}</strong><small>z ${number(record.recipients)} adresátů</small></div><div><span>Unikátní otevření</span><strong>${record.openRate} %</strong><small>${number(record.uniqueOpens)} příjemců</small></div><div><span>Celková otevření</span><strong>${number(record.totalOpens)}</strong><small>včetně opakovaných</small></div><div><span>Unikátní kliknutí</span><strong>${record.clickRate} %</strong><small>${number(record.uniqueClicks)} příjemců</small></div></div><div class="newsletter-detail-grid">${newsletterOpenChart(record)}<div class="newsletter-metrics"><h4>Souhrn rozesílky</h4><table><tbody>${metrics.map(([label, value]) => `<tr><td>${esc(label)}</td><td>${esc(value)}</td></tr>`).join("")}</tbody></table></div></div>${record.clicks?.length ? `<div class="newsletter-clicks"><h4>Kliknutí podle odkazu</h4><div class="newsletter-table-wrap"><table class="data-table"><thead><tr><th>Odkaz</th><th>Celkem kliknutí</th><th>Unikátní kliknutí</th></tr></thead><tbody>${record.clicks.map((click) => `<tr><td><a href="${esc(click.url)}" target="_blank" rel="noopener">${esc(click.label)}</a></td><td>${number(click.total)}</td><td>${number(click.unique)}</td></tr>`).join("")}</tbody></table></div></div>` : ""}</article>`;
+      }
       function renderNewsletters() {
         const records = [...hub.newsletters].sort((a, b) =>
-          b.date.localeCompare(a.date),
-        );
+            b.date.localeCompare(a.date),
+          ),
+          featured = records.find((record) => record.totalOpens != null);
         $("view-newsletters").innerHTML =
-          `<div class="section-head"><div><h2>Newslettery</h2><p>Čtvrtletní rozesílky, náhled, odkaz do Mailchimpu a porovnání základních metrik.</p></div></div>
-          <div class="surface"><h3>Přidat rozesílku</h3><form id="newsletter-form" class="form-grid"><label>Termín odeslání<input name="date" type="date" required></label><label>Předmět<input name="subject" required placeholder="Např. Novinky ze SPACE PLAN"></label><label class="wide">Perex<input name="perex" required placeholder="Krátké shrnutí, které se zobrazí v přehledu"></label><label>Odkaz na Mailchimp<input name="url" type="url" placeholder="https://mailchi.mp/"></label><label>Náhledový obrázek (URL)<input name="image" type="url" placeholder="https://"></label><label>Témata<textarea name="topics" rows="3" required placeholder="Hlavní témata a CTA"></textarea></label><label>Open rate (%)<input name="openRate" type="number" min="0" max="100" step="0.1"></label><label>Click rate (%)<input name="clickRate" type="number" min="0" max="100" step="0.1"></label><label>Odhlášení<input name="unsubscribes" type="number" min="0"></label><div class="wide"><button class="primary">Uložit newsletter</button></div></form></div>
-          <div class="surface"><h3>Porovnání rozesílek</h3>${records.length ? `<table class="data-table"><thead><tr><th>Datum</th><th>Newsletter</th><th>Open rate</th><th>Click rate</th><th>Odhlášení</th><th></th></tr></thead><tbody>${records.map((record) => `<tr><td>${dateLabel(record.date)}</td><td><strong>${esc(record.subject)}</strong><br><small>${esc(record.perex)}</small></td><td>${record.openRate ?? "—"}${record.openRate != null ? " %" : ""}</td><td>${record.clickRate ?? "—"}${record.clickRate != null ? " %" : ""}</td><td>${record.unsubscribes ?? "—"}</td><td>${record.url ? `<a href="${esc(record.url)}" target="_blank" rel="noopener">Otevřít v Mailchimpu</a>` : "—"}</td></tr>`).join("")}</tbody></table>` : `<p class="view-note">Zatím není vložena žádná rozesílka.</p>`}</div>`;
+          `<div class="section-head"><div><h2>Newslettery</h2><p>Výsledky rozesílek, náhled v Mailchimpu a porovnání základních metrik.</p></div></div>
+          ${featured ? newsletterFeature(featured) : ""}
+          <div class="surface"><h3>Porovnání rozesílek</h3>${records.length ? `<table class="data-table"><thead><tr><th>Datum</th><th>Newsletter</th><th>Open rate</th><th>Click rate</th><th>Odhlášení</th><th></th></tr></thead><tbody>${records.map((record) => `<tr><td>${dateLabel(record.date)}</td><td><strong>${esc(record.subject)}</strong><br><small>${esc(record.perex)}</small></td><td>${record.openRate ?? "—"}${record.openRate != null ? " %" : ""}</td><td>${record.clickRate ?? "—"}${record.clickRate != null ? " %" : ""}</td><td>${record.unsubscribes ?? "—"}</td><td>${record.url ? `<a href="${esc(record.url)}" target="_blank" rel="noopener">Otevřít náhled</a>` : "—"}</td></tr>`).join("")}</tbody></table>` : `<p class="view-note">Zatím není vložena žádná rozesílka.</p>`}</div>
+          <details class="edit-panel"><summary>Přidat další rozesílku</summary><form id="newsletter-form" class="form-grid"><label>Termín odeslání<input name="date" type="date" required></label><label>Předmět<input name="subject" required placeholder="Např. Novinky ze SPACE PLAN"></label><label class="wide">Perex<input name="perex" required placeholder="Krátké shrnutí, které se zobrazí v přehledu"></label><label>Odkaz na Mailchimp<input name="url" type="url" placeholder="https://mailchi.mp/"></label><label>Náhledový obrázek (URL)<input name="image" type="url" placeholder="https://"></label><label>Témata<textarea name="topics" rows="3" required placeholder="Hlavní témata a CTA"></textarea></label><label>Open rate (%)<input name="openRate" type="number" min="0" max="100" step="0.1"></label><label>Click rate (%)<input name="clickRate" type="number" min="0" max="100" step="0.1"></label><label>Odhlášení<input name="unsubscribes" type="number" min="0"></label><div class="wide"><button class="primary">Uložit newsletter</button></div></form></details>`;
         $("newsletter-form").onsubmit = async (event) => {
           event.preventDefault();
           const data = Object.fromEntries(new FormData(event.currentTarget));
