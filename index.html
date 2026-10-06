@@ -3023,6 +3023,63 @@
           },
         ],
       };
+      const newsletterHistorySeed = [
+        {
+          id: "newsletter-2026-02",
+          dataVersion: 1,
+          date: "2026-02-25",
+          deliveryTime: "2026-02-25T05:36:00",
+          title: "Newsletter 02/2026",
+          subject:
+            "Kancelář jako finanční aktivum: Jak přestat platit za prázdné metry?",
+          perex: "",
+          topics: "",
+          url: "",
+          recipients: 213,
+          delivered: 207,
+          bounces: 6,
+          bounceRate: 2.8,
+          uniqueOpens: 63,
+          openRate: 30.4,
+          totalOpens: 181,
+          lastOpenAt: "2026-04-23T08:00:00",
+          uniqueClicks: 8,
+          clickRate: 3.9,
+          totalClicks: 11,
+          lastClickAt: "2026-03-03T17:15:00",
+          unsubscribes: 0,
+          complaints: 0,
+          forwarded: 0,
+          forwardedOpens: 0,
+        },
+        {
+          id: "newsletter-2026-05",
+          dataVersion: 1,
+          date: "2026-05-13",
+          deliveryTime: "2026-05-13T07:08:00",
+          title: "Newsletter 05/2026",
+          subject: "3 pilíře efektivní kanceláře: Náklady, lidé a flexibilita",
+          perex: "",
+          topics: "",
+          url: "",
+          recipients: 213,
+          delivered: 206,
+          bounces: 7,
+          bounceRate: 3.3,
+          uniqueOpens: 47,
+          openRate: 22.8,
+          totalOpens: 119,
+          lastOpenAt: "2026-05-25T05:47:00",
+          uniqueClicks: 15,
+          clickRate: 7.3,
+          totalClicks: 21,
+          lastClickAt: "2026-07-20T04:07:00",
+          unsubscribes: 2,
+          complaints: 0,
+          forwarded: 0,
+          forwardedOpens: 0,
+        },
+      ];
       const billingSeed = {
         id: "2026",
         year: 2026,
@@ -3128,6 +3185,11 @@
           storedNewsletter.dataVersion !== newsletterSeed.dataVersion
         )
           await saveHub("newsletters", newsletterSeed);
+        for (const item of newsletterHistorySeed) {
+          const stored = hub.newsletters.find((entry) => entry.id === item.id);
+          if (!stored || stored.dataVersion !== item.dataVersion)
+            await saveHub("newsletters", item);
+        }
         renderHub();
       }
       async function saveHub(type, item) {
