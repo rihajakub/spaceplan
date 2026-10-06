@@ -844,6 +844,9 @@
         color: #d8dbe2;
         text-align: right;
       }
+      .print-report-header {
+        display: none;
+      }
       .report-section {
         margin: 30px 0;
       }
@@ -1096,9 +1099,18 @@
           text-align: left;
         }
       }
+      @page {
+        size: A4 portrait;
+        margin: 12mm;
+      }
       @media print {
+        html,
         body {
           background: white;
+          color: #171b22;
+          font-size: 9pt;
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
         }
         body > header,
         #view-home,
@@ -1113,12 +1125,69 @@
           display: block !important;
           padding: 0;
           max-width: none;
+          width: auto;
         }
         .report-cover {
+          display: none !important;
+        }
+        .print-report-header {
+          height: 12mm;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10mm;
+          padding: 0 5mm;
+          background: #171b22;
+          color: #fff;
+          border-radius: 2mm;
+          margin-bottom: 6mm;
+        }
+        .print-report-header img {
+          display: block;
+          width: 49mm;
+          height: auto;
+        }
+        .print-report-header strong {
+          font-size: 12pt;
+          font-weight: 600;
+          white-space: nowrap;
+        }
+        .print-page-two {
+          break-before: page;
+        }
+        .report-section {
+          margin: 0 0 5mm;
           break-inside: avoid;
         }
+        .report-section > h3 {
+          margin: 0 0 2.5mm;
+          padding-bottom: 1.5mm;
+          border-bottom-width: 1px;
+          font-size: 13pt;
+        }
+        .report-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+          gap: 4mm;
+        }
         .report-block {
+          border-radius: 2mm;
           break-inside: avoid;
+        }
+        .report-block-title {
+          padding: 2.5mm 3mm;
+          font-size: 9pt;
+        }
+        .report-block-title .tag {
+          padding: 1mm 2mm;
+          font-size: 7.5pt;
+        }
+        .comparison-table th,
+        .comparison-table td {
+          padding: 2mm 3mm;
+          font-size: 8.5pt;
+        }
+        .comparison-table th {
+          font-size: 7.5pt;
         }
       }
     </style>
@@ -2616,10 +2685,11 @@
           .join("");
         $("view-reporting").innerHTML =
           `<div class="section-head"><div><h2>Reporting</h2><p>Měsíční výsledky PPC kampaní rozdělené podle mediálních typů.</p></div><div class="section-actions"><label class="compact-label">Měsíc<select id="report-month">${reportOptions(report.id)}</select></label><button id="print-report">Uložit PDF</button></div></div>
+          <div class="print-report-header"><img src="/assets/spaceplan-negative.svg" alt="SPACE PLAN"><strong>Měsíční report - ${esc(monthName(report.month))}</strong></div>
           <div class="report-cover"><div><span class="eyebrow">Měsíční zpráva</span><h2>${esc(monthName(report.month))}</h2></div><div class="report-status">${report.status === "hotovo" ? "Ověřená data" : "Plán · čeká na skutečnost"}</div></div>
           <section class="report-section"><h3>Celková návštěvnost webu</h3>${reportTable(report.sections.summary)}</section>
           <section class="report-section"><h3>PPC kampaně ve vyhledávání</h3>${reportTable(report.sections.search)}<div class="report-grid" style="margin-top:18px">${reportTable(report.sections.google)}${reportTable(report.sections.seznam)}</div></section>
-          <section class="report-section"><h3>LinkedIn${report.sections.linkedin.tag ? ` – ${esc(report.sections.linkedin.tag.toLowerCase())}` : ""}</h3>${reportTable(report.sections.linkedin)}</section>
+          <div class="print-page-two"><div class="print-report-header"><img src="/assets/spaceplan-negative.svg" alt="SPACE PLAN"><strong>Měsíční report - ${esc(monthName(report.month))}</strong></div><section class="report-section"><h3>LinkedIn${report.sections.linkedin.tag ? ` – ${esc(report.sections.linkedin.tag.toLowerCase())}` : ""}</h3>${reportTable(report.sections.linkedin)}</section></div>
           <details class="edit-panel"><summary>Doplnit a zkontrolovat skutečné hodnoty</summary><form id="report-check" class="form-grid">${editFields}<label class="wide"><input name="confirmed" type="checkbox" required> Hodnoty jsem zkontroloval/a proti zdrojovým datům.</label><div class="wide"><button class="primary">Uložit ověřený report</button></div></form></details>`;
         $("report-month").onchange = (event) =>
           renderReporting(event.target.value);
