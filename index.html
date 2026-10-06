@@ -1180,7 +1180,7 @@
       }
       @page {
         size: A4 portrait;
-        margin: 12mm;
+        margin: 8mm;
       }
       @media print {
         html,
@@ -1210,7 +1210,7 @@
           display: none !important;
         }
         .print-report-header {
-          height: 12mm;
+          height: 10mm;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -1219,58 +1219,61 @@
           background: #171b22;
           color: #fff;
           border-radius: 2mm;
-          margin-bottom: 6mm;
+          margin-bottom: 4mm;
         }
         .print-report-header img {
           display: block;
-          width: 49mm;
+          width: 44mm;
           height: auto;
         }
         .print-report-header strong {
-          font-size: 12pt;
+          font-size: 10.5pt;
           font-weight: 600;
           white-space: nowrap;
         }
         .print-page-two {
-          break-before: page;
+          break-before: auto;
+        }
+        .print-page-two > .print-report-header {
+          display: none;
         }
         .report-section {
-          margin: 0 0 5mm;
+          margin: 0 0 3mm;
           break-inside: avoid;
         }
         .report-section > h3 {
-          margin: 0 0 2.5mm;
-          padding-bottom: 1.5mm;
+          margin: 0 0 1.5mm;
+          padding-bottom: 0.5mm;
           border-bottom-width: 1px;
-          font-size: 13pt;
+          font-size: 11pt;
         }
         .report-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-          gap: 4mm;
+          gap: 3mm;
         }
         .report-block {
           border-radius: 2mm;
           break-inside: avoid;
         }
         .report-block-title {
-          padding: 2.5mm 3mm;
-          font-size: 9pt;
+          padding: 1.6mm 2.3mm;
+          font-size: 8pt;
         }
         .report-block-title .tag {
-          padding: 1mm 2mm;
-          font-size: 7.5pt;
+          padding: 0.5mm 1.5mm;
+          font-size: 7pt;
         }
         .comparison-table th,
         .comparison-table td {
-          padding: 2mm 3mm;
-          font-size: 8.5pt;
+          padding: 1.25mm 2.3mm;
+          font-size: 7.7pt;
         }
         .comparison-table th {
-          font-size: 7.5pt;
+          font-size: 6.8pt;
         }
         .section-index {
-          width: 20px;
-          height: 20px;
+          width: 17px;
+          height: 17px;
           border-radius: 5px;
           font-size: 7.5pt;
         }
