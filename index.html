@@ -252,6 +252,35 @@
         border-radius: 12px;
         overflow: hidden;
       }
+      .mobile-agenda {
+        display: none;
+      }
+      .mobile-agenda-day {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: white;
+      }
+      .mobile-agenda-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 11px 13px;
+        border-bottom: 1px solid var(--line);
+        background: #f9fafc;
+      }
+      .mobile-agenda-head strong {
+        line-height: 1.25;
+      }
+      .mobile-agenda-items {
+        display: grid;
+        gap: 8px;
+        padding: 9px;
+      }
+      .mobile-scroll-hint {
+        display: none;
+      }
       .weekdays,
       .grid {
         display: grid;
@@ -1424,6 +1453,9 @@
         color: #9a5b00;
       }
       @media (max-width: 980px) {
+        body:not(.locked) {
+          padding-bottom: 66px;
+        }
         .hub-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
@@ -1434,37 +1466,464 @@
           grid-template-columns: 1fr;
         }
         .nav {
-          display: none;
+          position: fixed;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          z-index: 20;
+          display: flex;
+          align-items: stretch;
+          gap: 3px;
+          padding: 5px 8px max(5px, env(safe-area-inset-bottom));
+          border-top: 1px solid var(--line);
+          background: #fff;
+          box-shadow: 0 -8px 24px #18223912;
+        }
+        .nav a {
+          display: grid;
+          flex: 1 1 0;
+          min-width: 0;
+          min-height: 48px;
+          place-items: center;
+          padding: 6px 4px;
+          text-align: center;
+          font-size: 0;
+          font-weight: 650;
+          line-height: 1.15;
+        }
+        .nav a::after {
+          content: attr(data-mobile-label);
+          font-size: 12px;
         }
       }
       @media (max-width: 650px) {
+        body:not(.locked) {
+          padding-bottom: 66px;
+        }
+        .access-gate {
+          padding: 14px;
+        }
+        .access-card {
+          padding: 26px 22px;
+          border-radius: 14px;
+        }
+        header {
+          position: sticky;
+          top: 0;
+          z-index: 12;
+          min-height: 64px;
+          padding: 10px 12px;
+          box-shadow: 0 2px 12px #1822390d;
+        }
+        .brand {
+          min-width: 0;
+          gap: 8px;
+        }
+        .logo {
+          width: 40px;
+          height: 40px;
+          border-radius: 8px;
+        }
+        .brand h1 {
+          white-space: nowrap;
+          font-size: 17px;
+          letter-spacing: -0.3px;
+        }
+        .brand .small {
+          display: none;
+        }
+        .header-actions {
+          margin-left: auto;
+          gap: 4px;
+        }
+        .logout {
+          width: 38px;
+          height: 38px;
+          padding: 0;
+          font-size: 0;
+        }
+        .logout::before {
+          content: "↪";
+          font-size: 19px;
+        }
+        #new {
+          padding: 8px 10px;
+          white-space: nowrap;
+          font-size: 13px;
+        }
+        .nav {
+          position: fixed;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          z-index: 20;
+          display: flex;
+          align-items: stretch;
+          gap: 2px;
+          padding: 5px 6px max(5px, env(safe-area-inset-bottom));
+          border-top: 1px solid var(--line);
+          background: #fff;
+          box-shadow: 0 -8px 24px #18223912;
+        }
+        .nav a {
+          display: grid;
+          flex: 1 1 0;
+          min-width: 0;
+          min-height: 48px;
+          place-items: center;
+          padding: 6px 2px;
+          text-align: center;
+          font-size: 0;
+          font-weight: 650;
+          line-height: 1.15;
+        }
+        .nav a::after {
+          content: attr(data-mobile-label);
+          font-size: 10.5px;
+        }
         .hub-grid,
         .form-grid,
         .billing-summary {
           grid-template-columns: 1fr;
         }
         .hub {
-          padding: 28px 16px;
+          padding: 24px 16px;
+        }
+        .hub-hero {
+          margin-bottom: 22px;
+        }
+        .hub-hero h2 {
+          font-size: 29px;
+          line-height: 1.18;
+        }
+        .hub-card {
+          min-height: 0;
+          padding: 20px;
         }
         .section-head,
         .report-cover {
           flex-direction: column;
           align-items: stretch;
         }
+        .section-head {
+          gap: 14px;
+          margin-bottom: 17px;
+        }
+        .section-head h2 {
+          font-size: 28px;
+          line-height: 1.18;
+        }
+        .section-actions {
+          width: 100%;
+          align-items: end;
+        }
+        .section-actions label {
+          flex: 1;
+          min-width: 0;
+        }
+        .section-actions button {
+          flex: 0 0 auto;
+        }
+        .shell {
+          padding: 14px 12px;
+        }
+        .toolbar {
+          gap: 6px;
+          margin-bottom: 14px;
+        }
+        .month-nav {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) 42px 42px auto;
+          width: 100%;
+        }
+        .month-nav h2 {
+          min-width: 0;
+          margin: 0;
+          font-size: 21px;
+        }
+        .month-nav button {
+          min-height: 40px;
+          padding: 7px 10px;
+        }
+        .count {
+          font-size: 13px;
+        }
+        .filters {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+          gap: 8px;
+        }
+        .filters .search,
+        .date-filter,
+        #reset {
+          grid-column: 1 / -1;
+        }
+        .filters .search {
+          width: 100%;
+          min-width: 0 !important;
+        }
+        .filter-menu {
+          width: 100%;
+          min-width: 0;
+        }
+        .filter-menu summary {
+          overflow: hidden;
+          width: 100%;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        .filter-options {
+          position: fixed;
+          right: 12px;
+          left: 12px;
+          z-index: 30;
+          min-width: 0;
+        }
+        .date-filter {
+          display: grid;
+          grid-template-columns: auto minmax(0, 1fr) auto minmax(0, 1fr);
+        }
+        .date-filter input {
+          width: 100%;
+        }
+        #reset {
+          width: 100%;
+        }
+        .calendar {
+          display: none;
+        }
+        .mobile-agenda {
+          display: grid;
+          gap: 10px;
+        }
+        .mobile-agenda .card {
+          margin: 0;
+          padding: 11px;
+        }
+        .mobile-agenda .card-meta {
+          flex-direction: row;
+          align-items: center;
+        }
+        .mobile-agenda .card-title {
+          margin: 7px 0;
+          font-size: 15px;
+        }
+        .mobile-agenda-empty {
+          padding: 26px 18px;
+          border: 1px solid var(--line);
+          border-radius: 12px;
+          background: white;
+          text-align: center;
+        }
+        .mobile-agenda-empty h3 {
+          margin: 0 0 6px;
+        }
+        .panel {
+          top: 8px;
+          right: 8px;
+          bottom: 74px;
+          left: 8px;
+          max-height: calc(100vh - 82px);
+          padding: 18px;
+          border-radius: 12px;
+        }
+        .panel-actions {
+          flex-direction: column;
+        }
+        .panel-actions button {
+          width: 100%;
+        }
+        dialog {
+          width: calc(100% - 16px);
+          max-height: calc(100vh - 82px);
+          padding: 18px;
+        }
+        .dialog-head {
+          margin-bottom: 16px;
+        }
+        .network-choice {
+          margin: 0 4px 7px 0;
+          padding: 7px 8px;
+        }
+        .result {
+          display: grid;
+          grid-template-columns: 1fr auto;
+          padding: 12px;
+        }
+        .result > .small,
+        .result-title {
+          grid-column: 1 / -1;
+        }
+        .result-title {
+          min-width: 0;
+          margin: 3px 0 7px;
+        }
+        .report-cover {
+          gap: 14px;
+          padding: 18px;
+        }
         .report-cover .report-status {
           text-align: left;
+        }
+        .report-section {
+          margin-bottom: 20px;
+        }
+        .report-section > h3 {
+          align-items: flex-start;
+          font-size: 18px;
+          line-height: 1.25;
+        }
+        .report-block-title {
+          padding: 11px 12px;
+        }
+        .comparison-table,
+        .comparison-table tbody,
+        .comparison-table tr,
+        .comparison-table td {
+          display: block;
+          width: 100%;
+        }
+        .comparison-table thead {
+          display: none;
+        }
+        .comparison-table tbody tr {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 10px;
+          padding: 11px 12px;
+          border-bottom: 1px solid var(--line);
+        }
+        .comparison-table tbody tr:last-child {
+          border-bottom: 0;
+        }
+        .comparison-table tbody td {
+          padding: 0;
+          border: 0;
+          text-align: left;
+          font-size: 14px;
+        }
+        .comparison-table tbody td:first-child {
+          grid-column: 1 / -1;
+          width: auto;
+          color: var(--ink);
+          font-size: 15px;
+          font-weight: 750;
+        }
+        .comparison-table tbody td:not(:first-child)::before {
+          display: block;
+          margin-bottom: 2px;
+          color: var(--muted);
+          content: attr(data-label);
+          font-size: 10px;
+          font-weight: 650;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+        }
+        .fulfilment-pill {
+          min-width: 0;
+        }
+        .fulfilment-track {
+          display: none;
+        }
+        .billing-summary {
+          gap: 9px;
+          margin: 14px 0;
+        }
+        .billing-summary > div {
+          padding: 13px 15px;
+        }
+        .billing-summary strong {
+          margin-top: 3px;
+          font-size: 21px;
+        }
+        .mobile-scroll-hint {
+          display: block;
+          margin: 0 0 7px;
+          color: var(--muted);
+          font-size: 12px;
+        }
+        .billing-wrap {
+          margin-right: -16px;
+          margin-left: -16px;
+          border-right: 0;
+          border-left: 0;
+          border-radius: 0;
+        }
+        .billing-table th,
+        .billing-table td {
+          min-width: 92px;
+          padding: 9px 7px;
+        }
+        .billing-table th:first-child,
+        .billing-table td:first-child {
+          min-width: 165px;
+          max-width: 165px;
+          white-space: normal;
         }
         .newsletter-feature-head {
           align-items: flex-start;
           flex-direction: column;
         }
+        .newsletter-feature-head,
+        .newsletter-detail-grid {
+          padding: 16px;
+        }
+        .newsletter-preview-link {
+          width: 100%;
+          text-align: center;
+        }
         .newsletter-kpis {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
+        .newsletter-kpis > div {
+          padding: 13px;
+        }
+        .newsletter-kpis strong {
+          font-size: 20px;
+        }
         .newsletter-detail-grid,
         .newsletter-clicks {
-          padding-left: 14px;
-          padding-right: 14px;
+          padding-left: 12px;
+          padding-right: 12px;
+        }
+        .surface {
+          padding: 16px;
+        }
+        .newsletter-comparison {
+          min-width: 0;
+        }
+        .newsletter-comparison thead {
+          display: none;
+        }
+        .newsletter-comparison,
+        .newsletter-comparison tbody,
+        .newsletter-comparison tr,
+        .newsletter-comparison td {
+          display: block;
+          width: 100%;
+        }
+        .newsletter-comparison tr {
+          padding: 12px 0;
+          border-bottom: 1px solid var(--line);
+        }
+        .newsletter-comparison tr:last-child {
+          border-bottom: 0;
+        }
+        .newsletter-comparison td {
+          display: grid;
+          grid-template-columns: 92px minmax(0, 1fr);
+          gap: 10px;
+          padding: 4px 0;
+          border: 0;
+        }
+        .newsletter-comparison td::before {
+          color: var(--muted);
+          content: attr(data-label);
+          font-size: 11px;
+          font-weight: 650;
+        }
+        .newsletter-table-wrap .data-table {
+          min-width: 560px;
         }
       }
       @page {
@@ -1616,14 +2075,22 @@
         </div>
       </a>
       <nav class="nav" aria-label="Hlavní navigace">
-        <a href="/" data-view="home" class="active">Přehled</a>
-        <a href="/content-plan" data-view="content">Content plán</a>
-        <a href="/reporting" data-view="reporting">Reporting</a>
-        <a href="/vyuctovani" data-view="billing">Vyúčtování</a>
-        <a href="/newslettery" data-view="newsletters">Newslettery</a>
+        <a href="/" data-view="home" data-mobile-label="Přehled" class="active">Přehled</a>
+        <a href="/content-plan" data-view="content" data-mobile-label="Content">Content plán</a>
+        <a href="/reporting" data-view="reporting" data-mobile-label="Reporting">Reporting</a>
+        <a href="/vyuctovani" data-view="billing" data-mobile-label="Vyúčt.">Vyúčtování</a>
+        <a href="/newslettery" data-view="newsletters" data-mobile-label="News">Newslettery</a>
       </nav>
       <div class="header-actions">
-        <button class="logout" id="logout" type="button">Odhlásit</button>
+        <button
+          class="logout"
+          id="logout"
+          type="button"
+          aria-label="Odhlásit"
+          title="Odhlásit"
+        >
+          Odhlásit
+        </button>
         <button class="primary" id="new" disabled>＋ Nový příspěvek</button>
       </div>
     </header>
@@ -2128,6 +2595,28 @@
             html += `<div class="day ${d.getMonth() !== m ? "other" : ""} ${i % 7 >= 5 ? "weekend" : ""} ${key === today() ? "today" : ""}" data-day="${key}"><div class="day-top"><button class="day-add" data-new="${key}" aria-label="Přidat příspěvek ${key}">+</button><button class="day-number" data-new="${key}" aria-label="Nový příspěvek ${key}">${d.getDate()}</button></div>${items.slice(0, 5).map(card).join("")}${items.length > 5 ? `<button class="more" data-day-list="${key}">+ ${items.length - 5} dalších</button>` : ""}</div>`;
           }
           html += "</div></div>";
+          const agendaByDay = inMonth.reduce((groups, post) => {
+            (groups[post.date] ||= []).push(post);
+            return groups;
+          }, {});
+          html += `<div class="mobile-agenda">${
+            inMonth.length
+              ? Object.entries(agendaByDay)
+                  .map(
+                    ([date, items]) =>
+                      `<section class="mobile-agenda-day"><div class="mobile-agenda-head"><strong>${esc(
+                        parseDay(date)
+                          .toLocaleDateString("cs-CZ", {
+                            weekday: "long",
+                            day: "numeric",
+                            month: "long",
+                          })
+                          .replace(/^./, (letter) => letter.toUpperCase()),
+                      )}</strong><button data-new="${date}" aria-label="Přidat příspěvek ${date}">＋</button></div><div class="mobile-agenda-items">${items.map(card).join("")}</div></section>`,
+                  )
+                  .join("")
+              : `<div class="mobile-agenda-empty"><h3>V tomto měsíci nic není</h3><p class="small">Přidejte první příspěvek a zobrazí se zde v přehledné agendě.</p><button class="primary" data-new="${dayKey(new Date(y, m, 1, 12))}">＋ Nový příspěvek</button></div>`
+          }</div>`;
           $("board").innerHTML = html;
         }
         renderPanel();
@@ -2161,7 +2650,7 @@
             )
             .join(
               "",
-            )}</select><div class="panel-actions"><button class="primary" data-edit>Upravit</button><button data-locate>Zobrazit v kalendáři</button><button class="danger" data-delete>Odstranit</button></div>`;
+            )}</select><div class="panel-actions"><button class="primary" data-edit>Upravit</button><button data-locate>Najít v plánu</button><button class="danger" data-delete>Odstranit</button></div>`;
         $("panel-state").onchange = async (e) => {
           e.target.disabled = true;
           try {
@@ -3427,7 +3916,7 @@
             if (active) el.setAttribute("aria-current", "page");
             else el.removeAttribute("aria-current");
           });
-        $("new").style.visibility = view === "content" ? "visible" : "hidden";
+        $("new").classList.toggle("hidden", view !== "content");
         if (view !== "content") selected = null;
         if (view === "content") render();
         if (options.updateHistory) {
@@ -3495,7 +3984,7 @@
                 percent === null
                   ? section.missing || "–"
                   : `<span class="fulfilment-pill"><span>${percent} %</span><span class="fulfilment-track" aria-hidden="true"><i style="width:${Math.min(Math.max(percent, 0), 100)}%"></i></span></span>`;
-            return `<tr><td>${esc(row.label)}</td><td>${reportValue(row, row.plan)}</td><td>${reportValue(row, row.actual, section.missing || "–")}</td><td class="fulfilment ${ratio !== null ? (ratio >= 1 ? "over" : "under") : ""}">${fulfilment}</td></tr>`;
+            return `<tr><td>${esc(row.label)}</td><td data-label="Odhad">${reportValue(row, row.plan)}</td><td data-label="Realita">${reportValue(row, row.actual, section.missing || "–")}</td><td data-label="Plnění" class="fulfilment ${ratio !== null ? (ratio >= 1 ? "over" : "under") : ""}">${fulfilment}</td></tr>`;
           })
           .join("")}</tbody></table></article>`;
       }
@@ -3574,7 +4063,7 @@
         $("view-billing").innerHTML =
           `<div class="section-head"><div><h2>Vyúčtování médií</h2><p>Roční přehled plánu a skutečného čerpání podle reklamních systémů.</p></div><button id="export-billing">Export XLSX</button></div>
           <div class="billing-summary"><div><span>Plán 2026</span><strong>${money(plannedTotal)}</strong></div><div><span>Investováno</span><strong>${money(investedTotal)}</strong></div><div><span>Zbývá dle plánu</span><strong>${money(plannedTotal - investedTotal)}</strong></div></div>
-          <div class="billing-wrap"><table class="billing-table"><thead><tr><th>${item.year}</th>${monthsCz.map((month) => `<th>${month}</th>`).join("")}<th>Celkem</th></tr></thead><tbody><tr class="group-row"><td colspan="14">Kampaně</td></tr>${row("Plán dle podepsaného mediaplánu", item.plan, "plan-row")}${row("Ponížení", item.reductions, "plan-row")}${row("Fakturace realita", item.invoices, "plan-row")}${row("Investovaný kredit", invested, "total-row")}${channelRows}${row("Rozdíl", difference, "difference-row")}</tbody></table></div>
+          <div class="mobile-scroll-hint">Posuňte tabulku do strany pro další měsíce →</div><div class="billing-wrap"><table class="billing-table"><thead><tr><th>${item.year}</th>${monthsCz.map((month) => `<th>${month}</th>`).join("")}<th>Celkem</th></tr></thead><tbody><tr class="group-row"><td colspan="14">Kampaně</td></tr>${row("Plán dle podepsaného mediaplánu", item.plan, "plan-row")}${row("Ponížení", item.reductions, "plan-row")}${row("Fakturace realita", item.invoices, "plan-row")}${row("Investovaný kredit", invested, "total-row")}${channelRows}${row("Rozdíl", difference, "difference-row")}</tbody></table></div>
           <div class="surface"><p class="view-note">Žlutá pole jsou určena pro ruční doplnění reality. Součty a rozdíly se dopočítají automaticky po uložení.</p><button class="primary" id="save-billing">Uložit skutečné čerpání</button></div>`;
         $("save-billing").onclick = async () => {
           document
@@ -3678,7 +4167,7 @@
           ["Stížnosti", number(record.complaints)],
           ["Přeposlání", number(record.forwarded)],
         ];
-        return `<article class="newsletter-feature"><div class="newsletter-feature-head"><div><span class="eyebrow">${esc(record.title || "Newsletter")}</span><h3>${esc(record.subject)}</h3><p>Odesláno ${newsletterTimeLabel(record.deliveryTime || record.date)}</p></div>${record.url ? `<a class="newsletter-preview-link" href="${esc(record.url)}" target="_blank" rel="noopener">Otevřít náhled ↗</a>` : ""}</div><div class="newsletter-kpis"><div><span>Doručeno</span><strong>${number(record.delivered)}</strong><small>z ${number(record.recipients)} adresátů</small></div><div><span>Unikátní otevření</span><strong>${record.openRate} %</strong><small>${number(record.uniqueOpens)} příjemců</small></div><div><span>Celková otevření</span><strong>${number(record.totalOpens)}</strong><small>včetně opakovaných</small></div><div><span>Unikátní kliknutí</span><strong>${record.clickRate} %</strong><small>${number(record.uniqueClicks)} příjemců</small></div></div><div class="newsletter-detail-grid">${newsletterOpenChart(record)}<div class="newsletter-metrics"><h4>Souhrn rozesílky</h4><table><tbody>${metrics.map(([label, value]) => `<tr><td>${esc(label)}</td><td>${esc(value)}</td></tr>`).join("")}</tbody></table></div></div>${record.clicks?.length ? `<div class="newsletter-clicks"><h4>Kliknutí podle odkazu</h4><div class="newsletter-table-wrap"><table class="data-table"><thead><tr><th>Odkaz</th><th>Celkem kliknutí</th><th>Unikátní kliknutí</th></tr></thead><tbody>${record.clicks.map((click) => `<tr><td><a href="${esc(click.url)}" target="_blank" rel="noopener">${esc(click.label)}</a></td><td>${number(click.total)}</td><td>${number(click.unique)}</td></tr>`).join("")}</tbody></table></div></div>` : ""}</article>`;
+        return `<article class="newsletter-feature"><div class="newsletter-feature-head"><div><span class="eyebrow">${esc(record.title || "Newsletter")}</span><h3>${esc(record.subject)}</h3><p>Odesláno ${newsletterTimeLabel(record.deliveryTime || record.date)}</p></div>${record.url ? `<a class="newsletter-preview-link" href="${esc(record.url)}" target="_blank" rel="noopener">Otevřít náhled ↗</a>` : ""}</div><div class="newsletter-kpis"><div><span>Doručeno</span><strong>${number(record.delivered)}</strong><small>z ${number(record.recipients)} adresátů</small></div><div><span>Unikátní otevření</span><strong>${record.openRate} %</strong><small>${number(record.uniqueOpens)} příjemců</small></div><div><span>Celková otevření</span><strong>${number(record.totalOpens)}</strong><small>včetně opakovaných</small></div><div><span>Unikátní kliknutí</span><strong>${record.clickRate} %</strong><small>${number(record.uniqueClicks)} příjemců</small></div></div><div class="newsletter-detail-grid">${newsletterOpenChart(record)}<div class="newsletter-metrics"><h4>Souhrn rozesílky</h4><table><tbody>${metrics.map(([label, value]) => `<tr><td>${esc(label)}</td><td>${esc(value)}</td></tr>`).join("")}</tbody></table></div></div>${record.clicks?.length ? `<div class="newsletter-clicks"><h4>Kliknutí podle odkazu</h4><div class="mobile-scroll-hint">Posuňte tabulku do strany →</div><div class="newsletter-table-wrap"><table class="data-table"><thead><tr><th>Odkaz</th><th>Celkem kliknutí</th><th>Unikátní kliknutí</th></tr></thead><tbody>${record.clicks.map((click) => `<tr><td><a href="${esc(click.url)}" target="_blank" rel="noopener">${esc(click.label)}</a></td><td>${number(click.total)}</td><td>${number(click.unique)}</td></tr>`).join("")}</tbody></table></div></div>` : ""}</article>`;
       }
       function renderNewsletters() {
         const records = [...hub.newsletters].sort((a, b) =>
@@ -3688,7 +4177,7 @@
         $("view-newsletters").innerHTML =
           `<div class="section-head"><div><h2>Newslettery</h2><p>Výsledky rozesílek, náhled v Mailchimpu a porovnání základních metrik.</p></div></div>
           ${featured ? newsletterFeature(featured) : ""}
-          <div class="surface"><h3>Porovnání rozesílek</h3>${records.length ? `<table class="data-table"><thead><tr><th>Datum</th><th>Newsletter</th><th>Open rate</th><th>Click rate</th><th>Odhlášení</th><th></th></tr></thead><tbody>${records.map((record) => `<tr><td>${dateLabel(record.date)}</td><td><strong>${esc(record.subject)}</strong><br><small>${esc(record.perex)}</small></td><td>${record.openRate ?? "—"}${record.openRate != null ? " %" : ""}</td><td>${record.clickRate ?? "—"}${record.clickRate != null ? " %" : ""}</td><td>${record.unsubscribes ?? "—"}</td><td>${record.url ? `<a href="${esc(record.url)}" target="_blank" rel="noopener">Otevřít náhled</a>` : "—"}</td></tr>`).join("")}</tbody></table>` : `<p class="view-note">Zatím není vložena žádná rozesílka.</p>`}</div>
+          <div class="surface"><h3>Porovnání rozesílek</h3>${records.length ? `<table class="data-table newsletter-comparison"><thead><tr><th>Datum</th><th>Newsletter</th><th>Open rate</th><th>Click rate</th><th>Odhlášení</th><th></th></tr></thead><tbody>${records.map((record) => `<tr><td data-label="Datum">${dateLabel(record.date)}</td><td data-label="Newsletter"><strong>${esc(record.subject)}</strong><br><small>${esc(record.perex)}</small></td><td data-label="Open rate">${record.openRate ?? "—"}${record.openRate != null ? " %" : ""}</td><td data-label="Click rate">${record.clickRate ?? "—"}${record.clickRate != null ? " %" : ""}</td><td data-label="Odhlášení">${record.unsubscribes ?? "—"}</td><td data-label="Náhled">${record.url ? `<a href="${esc(record.url)}" target="_blank" rel="noopener">Otevřít náhled</a>` : "—"}</td></tr>`).join("")}</tbody></table>` : `<p class="view-note">Zatím není vložena žádná rozesílka.</p>`}</div>
           <details class="edit-panel"><summary>Přidat další rozesílku</summary><form id="newsletter-form" class="form-grid"><label>Termín odeslání<input name="date" type="date" required></label><label>Předmět<input name="subject" required placeholder="Např. Novinky ze SPACE PLAN"></label><label class="wide">Perex<input name="perex" required placeholder="Krátké shrnutí, které se zobrazí v přehledu"></label><label>Odkaz na Mailchimp<input name="url" type="url" placeholder="https://mailchi.mp/"></label><label>Náhledový obrázek (URL)<input name="image" type="url" placeholder="https://"></label><label>Témata<textarea name="topics" rows="3" required placeholder="Hlavní témata a CTA"></textarea></label><label>Open rate (%)<input name="openRate" type="number" min="0" max="100" step="0.1"></label><label>Click rate (%)<input name="clickRate" type="number" min="0" max="100" step="0.1"></label><label>Odhlášení<input name="unsubscribes" type="number" min="0"></label><div class="wide"><button class="primary">Uložit newsletter</button></div></form></details>`;
         $("newsletter-form").onsubmit = async (event) => {
           event.preventDefault();
