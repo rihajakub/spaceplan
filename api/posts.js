@@ -1,4 +1,5 @@
 const { neon } = require('@neondatabase/serverless');
+const { requireAccess } = require('../lib/auth');
 
 function send(res, status, data) {
   res.status(status).json(data);
@@ -26,6 +27,7 @@ function validPost(post) {
 
 module.exports = async (req, res) => {
   try {
+    if (!requireAccess(req, res)) return;
     const sql = database();
     await prepare(sql);
 

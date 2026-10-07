@@ -1,8 +1,10 @@
 const { put } = require('@vercel/blob');
+const { requireAccess } = require('../lib/auth');
 
 const types = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp' };
 
 module.exports = async (req, res) => {
+  if (!requireAccess(req, res)) return;
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ error: 'Nepodporovaná metoda.' });

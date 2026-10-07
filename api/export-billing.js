@@ -1,5 +1,6 @@
 const XLSX = require("xlsx-js-style");
 const { neon } = require("@neondatabase/serverless");
+const { requireAccess } = require("../lib/auth");
 
 const months = [
   "leden",
@@ -21,6 +22,7 @@ const sum = (values) =>
 
 module.exports = async (req, res) => {
   try {
+    if (!requireAccess(req, res)) return;
     const url = process.env.POSTGRES_URL || process.env.DATABASE_URL;
     if (!url) throw new Error("Databáze není nakonfigurovaná.");
     const year = String(req.query?.year || "2026");
