@@ -508,6 +508,11 @@
         flex-wrap: wrap;
         margin-top: 24px;
       }
+      .panel-actions .share-button {
+        border-color: #c8d3ea;
+        color: var(--blue);
+        background: #f6f8ff;
+      }
       .close {
         border: 0;
         background: #f1f4f8;
@@ -2448,6 +2453,57 @@
         clearTimeout(toastTimer);
         toastTimer = setTimeout(() => $("toast").classList.add("hidden"), 4000);
       }
+      function postIdFromUrl() {
+        return new URLSearchParams(window.location.search).get("post");
+      }
+      function postShareUrl(id) {
+        const url = new URL("/content-plan", window.location.origin);
+        url.searchParams.set("post", id);
+        return url.toString();
+      }
+      function updatePostUrl(id, replace = false) {
+        const url = id
+          ? `/content-plan?post=${encodeURIComponent(id)}`
+          : "/content-plan";
+        window.history[replace ? "replaceState" : "pushState"](
+          { view: "content", post: id || null },
+          "",
+          url,
+        );
+      }
+      function selectPostFromUrl() {
+        const id = postIdFromUrl();
+        if (!id) {
+          selected = null;
+          return false;
+        }
+        const post = posts.find((item) => item.id === id);
+        if (!post) {
+          selected = null;
+          return false;
+        }
+        selected = post.id;
+        month = parseDay(post.date);
+        return true;
+      }
+      async function copyPostLink(post) {
+        const url = postShareUrl(post.id);
+        try {
+          await navigator.clipboard.writeText(url);
+        } catch (error) {
+          const input = document.createElement("textarea");
+          input.value = url;
+          input.setAttribute("readonly", "");
+          input.style.position = "fixed";
+          input.style.opacity = "0";
+          document.body.appendChild(input);
+          input.select();
+          const copied = document.execCommand("copy");
+          input.remove();
+          if (!copied) throw error;
+        }
+        toast("Odkaz na návrh byl zkopírován.");
+      }
       function confirmAction(title, text) {
         $("confirm-title").textContent = title;
         $("confirm-text").textContent = text;
@@ -2650,7 +2706,7 @@
             )
             .join(
               "",
-            )}</select><div class="panel-actions"><button class="primary" data-edit>Upravit</button><button data-locate>Najít v plánu</button><button class="danger" data-delete>Odstranit</button></div>`;
+            )}</select><div class="panel-actions"><button class="primary" data-edit>Upravit</button><button class="share-button" data-share>🔗 Kopírovat odkaz</button><button data-locate>Najít v plánu</button><button class="danger" data-delete>Odstranit</button></div>`;
         $("panel-state").onchange = async (e) => {
           e.target.disabled = true;
           try {
@@ -2853,6 +2909,7 @@
           await persist(record);
           selected = record.id;
           month = parseDay(record.date);
+          updatePostUrl(record.id, true);
           dirty = false;
           $("editor").close();
           render();
@@ -2911,6 +2968,7 @@
           dayCell = e.target.closest("[data-day]");
         if (post) {
           selected = post.dataset.post;
+          updatePostUrl(selected);
           render();
         } else if (day) {
           editPost(null, day.dataset.new);
@@ -2970,12 +3028,20 @@
       $("panel").onclick = async (e) => {
         if (e.target.closest("[data-close]")) {
           selected = null;
+          updatePostUrl(null);
           render();
           return;
         }
         const p = posts.find((p) => p.id === selected);
         if (!p) return;
         if (e.target.closest("[data-edit]")) editPost(p.id);
+        if (e.target.closest("[data-share]")) {
+          try {
+            await copyPostLink(p);
+          } catch (err) {
+            toast("Odkaz se nepodařilo zkopírovat.");
+          }
+        }
         if (e.target.closest("[data-locate]")) {
           $("search").value = "";
           month = parseDay(p.date);
@@ -2992,6 +3058,7 @@
           try {
             await persist(p, true);
             selected = null;
+            updatePostUrl(null, true);
             render();
             toast("Příspěvek byl odstraněn.");
           } catch (err) {
@@ -3943,7 +4010,11 @@
           });
         }
       });
-      window.addEventListener("popstate", () => navTo(viewFromPath()));
+      window.addEventListener("popstate", () => {
+        const view = viewFromPath();
+        if (view === "content") selectPostFromUrl();
+        navTo(view);
+      });
       function renderHub() {
         renderReporting();
         renderBilling();
@@ -4203,6 +4274,13 @@
         });
         try {
           await openDB();
+          if (initialView === "content") {
+            const requestedPost = postIdFromUrl();
+            if (requestedPost && !selectPostFromUrl()) {
+              updatePostUrl(null, true);
+              toast("Sdílený návrh už není k dispozici.");
+            }
+          }
           render();
         } catch (err) {
           $("intro").classList.add("hidden");
