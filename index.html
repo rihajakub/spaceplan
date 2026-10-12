@@ -359,6 +359,15 @@
         display: block;
         box-shadow: 0 2px 5px #18223905;
       }
+      .card[data-state="published"] {
+        border-color: #9fd4b5;
+        border-left: 4px solid #117a43;
+        background: #e3f5ea;
+        box-shadow: 0 3px 10px #117a4318;
+      }
+      .card[data-state="published"] .card-title {
+        color: #115c36;
+      }
       .card.selected {
         outline: 2px solid #6b87fa;
       }
@@ -2386,7 +2395,7 @@
           tint: "#fff3dc",
         },
         approved: { name: "Schváleno", color: "#1e7b50", tint: "#e6f6ed" },
-        published: { name: "Publikováno", color: "#2c59c7", tint: "#eaf0ff" },
+        published: { name: "Publikováno", color: "#117a43", tint: "#d5efdf" },
       };
       const dayKey = (d) =>
           new Intl.DateTimeFormat("sv-SE", {
@@ -2596,7 +2605,7 @@
         const comment = p.note?.trim()
           ? `<span class="comment-indicator" title="Příspěvek obsahuje interní komentář">Komentář</span>`
           : "";
-        return `<button class="card ${selected === p.id ? "selected" : ""}" draggable="true" data-post="${p.id}" style="${stateStyle(p.state)}"><span class="card-meta"><span>${esc(p.time)}</span>${nets(p.channels)}</span><span class="card-title">${esc(p.title)}</span>${badge(p.state)}${comment}${p.image ? `<img class="thumb" alt="" src="${p.image}">` : ""}</button>`;
+        return `<button class="card ${selected === p.id ? "selected" : ""}" draggable="true" data-post="${p.id}" data-state="${p.state}" style="${stateStyle(p.state)}"><span class="card-meta"><span>${esc(p.time)}</span>${nets(p.channels)}</span><span class="card-title">${esc(p.title)}</span>${badge(p.state)}${comment}${p.image ? `<img class="thumb" alt="" src="${p.image}">` : ""}</button>`;
       }
       function render() {
         const list = filtered(),
