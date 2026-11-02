@@ -3515,15 +3515,184 @@
           },
         },
       };
-      function plannedReport(month, searchBudget, linkedinBudget) {
+      const octoberReport = {
+        id: "2026-10",
+        month: "2026-10",
+        schemaVersion: 3,
+        dataVersion: 1,
+        status: "hotovo",
+        sections: {
+          summary: {
+            title: "Návštěvnost z PPC kampaní celkem",
+            rows: reportRows({
+              visits: {
+                label: "Návštěvy",
+                format: "number",
+                plan: 617,
+                actual: 398,
+              },
+              clicks: {
+                label: "Prokliky",
+                format: "number",
+                plan: 617,
+                actual: 398,
+              },
+              cpc: {
+                label: "Cena za proklik",
+                format: "currency",
+                plan: 47,
+                actual: 50.06,
+              },
+              budget: {
+                label: "Rozpočet v Kč",
+                format: "currency",
+                plan: 29000,
+                actual: 19922.6,
+              },
+            }),
+          },
+          search: {
+            title: "PPC kampaně ve vyhledávačích Google i Seznam",
+            rows: reportRows({
+              visits: {
+                label: "Návštěvy",
+                format: "number",
+                plan: 617,
+                actual: 398,
+              },
+              clicks: {
+                label: "Prokliky",
+                format: "number",
+                plan: 617,
+                actual: 398,
+              },
+              cpc: {
+                label: "Cena za proklik",
+                format: "currency",
+                plan: 47,
+                actual: 50.06,
+              },
+              budget: {
+                label: "Rozpočet v Kč",
+                format: "currency",
+                plan: 29000,
+                actual: 19922.6,
+              },
+            }),
+          },
+          google: {
+            title: "PPC kampaně ve vyhledávačích Google",
+            rows: reportRows({
+              visits: {
+                label: "Návštěvy",
+                format: "number",
+                plan: null,
+                actual: 388,
+              },
+              clicks: {
+                label: "Prokliky",
+                format: "number",
+                plan: null,
+                actual: 388,
+              },
+              cpc: {
+                label: "Cena za proklik",
+                format: "currency",
+                plan: null,
+                actual: 50.9,
+              },
+              budget: {
+                label: "Rozpočet v Kč",
+                format: "currency",
+                plan: null,
+                actual: 19749.3,
+              },
+            }),
+          },
+          seznam: {
+            title: "PPC kampaně ve vyhledávačích Seznam",
+            rows: reportRows({
+              visits: {
+                label: "Návštěvy",
+                format: "number",
+                plan: null,
+                actual: 10,
+              },
+              clicks: {
+                label: "Prokliky",
+                format: "number",
+                plan: null,
+                actual: 10,
+              },
+              cpc: {
+                label: "Cena za proklik",
+                format: "currency",
+                plan: null,
+                actual: 17.33,
+              },
+              budget: {
+                label: "Rozpočet v Kč",
+                format: "currency",
+                plan: null,
+                actual: 173.3,
+              },
+            }),
+          },
+          linkedin: {
+            title: "PPC kampaně na LinkedIn",
+            tag: "Pozastaveno",
+            rows: reportRows({
+              impressions: {
+                label: "Zobrazení",
+                format: "number",
+                plan: 0,
+                actual: 0,
+              },
+              visits: {
+                label: "Návštěvy",
+                format: "number",
+                plan: 0,
+                actual: 0,
+              },
+              clicks: {
+                label: "Prokliky",
+                format: "number",
+                plan: 0,
+                actual: 0,
+              },
+              cpc: {
+                label: "Cena za proklik",
+                format: "currency",
+                plan: 0,
+                actual: 0,
+              },
+              budget: {
+                label: "Rozpočet v Kč",
+                format: "currency",
+                plan: 0,
+                actual: 0,
+              },
+            }),
+          },
+        },
+      };
+      function plannedReport(
+        month,
+        searchBudget,
+        linkedinBudget,
+        summaryBudget = searchBudget + linkedinBudget,
+        summaryTraffic = null,
+      ) {
         const searchTraffic = Math.round(searchBudget / 47),
           linkedinTraffic = Math.round(linkedinBudget / 50),
-          totalTraffic = searchTraffic + linkedinTraffic,
-          totalBudget = searchBudget + linkedinBudget;
+          totalTraffic =
+            summaryTraffic ?? searchTraffic + linkedinTraffic,
+          totalBudget = summaryBudget;
         return {
           id: month,
           month,
           schemaVersion: 3,
+          dataVersion: 1,
           status: "plán",
           sections: {
             summary: {
@@ -3683,9 +3852,9 @@
       const reportSeed = [
         augustReport,
         septemberReport,
-        plannedReport("2026-10", 29000, 5000),
-        plannedReport("2026-11", 29000, 5000),
-        plannedReport("2026-12", 20000, 3000),
+        octoberReport,
+        plannedReport("2026-11", 29000, 0, 33000, 1117),
+        plannedReport("2026-12", 20000, 0, 24000, 926),
       ];
       const newsletterSeed = {
         id: "newsletter-2026-09",
@@ -3840,9 +4009,10 @@
         id: "2026",
         year: 2026,
         schemaVersion: 2,
+        dataVersion: 1,
         plan: [
-          10000, 34000, 34000, 34000, 34000, 30000, 27000, 27000, 34000, 34000,
-          34000, 23000,
+          27000, 34000, 34000, 34000, 29000, 26000, 24000, 24000, 29000, 29000,
+          33000, 24000,
         ],
         reductions: Array(12).fill(null),
         invoices: Array(12).fill(null),
@@ -3858,8 +4028,8 @@
               21148.9,
               12550.9,
               22505.8,
-              null,
-              null,
+              18100.9,
+              19749.3,
               null,
               null,
             ],
@@ -3875,8 +4045,8 @@
               63,
               177,
               3.1,
-              null,
-              null,
+              182.9,
+              173.3,
               null,
               null,
             ],
@@ -3892,8 +4062,8 @@
               0,
               0,
               0,
-              null,
-              null,
+              0,
+              0,
               null,
               null,
             ],
@@ -3931,8 +4101,36 @@
             await saveHub("reports", item);
         }
         const billingYear = hub.billing.find((entry) => entry.id === "2026");
-        if (!billingYear || billingYear.schemaVersion !== 2)
-          await saveHub("billing", billingSeed);
+        if (
+          !billingYear ||
+          billingYear.schemaVersion !== billingSeed.schemaVersion ||
+          billingYear.dataVersion !== billingSeed.dataVersion
+        ) {
+          const storedChannels = billingYear?.channels || [];
+          await saveHub("billing", {
+            ...billingSeed,
+            ...(billingYear || {}),
+            schemaVersion: billingSeed.schemaVersion,
+            dataVersion: billingSeed.dataVersion,
+            plan: [...billingSeed.plan],
+            reductions:
+              billingYear?.reductions || [...billingSeed.reductions],
+            invoices: billingYear?.invoices || [...billingSeed.invoices],
+            channels: billingSeed.channels.map((seedChannel) => {
+              const storedChannel = storedChannels.find(
+                (channel) => channel.name === seedChannel.name,
+              );
+              return {
+                ...seedChannel,
+                values: seedChannel.values.map((seedValue, monthIndex) =>
+                  monthIndex === 9
+                    ? seedValue
+                    : storedChannel?.values?.[monthIndex] ?? seedValue,
+                ),
+              };
+            }),
+          });
+        }
         const storedNewsletter = hub.newsletters.find(
           (entry) => entry.id === newsletterSeed.id,
         );
